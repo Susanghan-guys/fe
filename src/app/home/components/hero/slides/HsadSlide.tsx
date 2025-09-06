@@ -1,11 +1,17 @@
 "use client";
 import RoundButton from "@/components/common/RoundButton";
 import { useRouter } from "next/navigation";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 function HsadSlide() {
   const router = useRouter();
 
   const handleapplicationClick = () => {
+    trackGAEvent(GA_EVENT.ClickApply, {
+      competition: "YCC",
+      cta: "신청하러가기",
+      screen: "HM",
+    });
     router.push("/application");
   };
   return (
