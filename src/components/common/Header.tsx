@@ -9,6 +9,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import { useSubmitStore } from "@/store/useSubmitStore";
 import ConfirmModal from "@/components/common/ConfirmModal";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 interface HeaderProps {
   theme?: "dark" | "light";
@@ -72,6 +73,12 @@ function Header({ theme }: HeaderProps) {
   };
 
   const handleProtectedNavigation = (href: string) => {
+    trackGAEvent(GA_EVENT.ClickHeader, {
+      label: "네비게이션",
+      screen: "HM",
+      href,
+    });
+
     const isInApplicationDetailPage =
       pathname.startsWith("/application/DCA") ||
       pathname.startsWith("/application/YCC");
