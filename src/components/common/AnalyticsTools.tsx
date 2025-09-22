@@ -3,7 +3,10 @@
 import Script from "next/script";
 
 export default function AnalyticsTools() {
-  if (process.env.NODE_ENV !== "production") {
+  const shouldLoadGA = process.env.NODE_ENV === "production" || 
+                      process.env.NEXT_PUBLIC_ENABLE_GA === "true";
+  
+  if (!shouldLoadGA) {
     return null;
   }
 
@@ -19,7 +22,9 @@ export default function AnalyticsTools() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-MSJZZZEEW7');
+          gtag('config', 'G-MSJZZZEEW7', {
+            debug_mode: true
+          });
         `}
       </Script>
       
