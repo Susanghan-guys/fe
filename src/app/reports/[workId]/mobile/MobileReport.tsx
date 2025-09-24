@@ -37,6 +37,12 @@ const MobileReport = () => {
     router.push(`/reports/${workId}?tab=${tab}`, { scroll: false });
   };
 
+  useEffect(() => {
+    if (isAxiosError(error) && error.response?.status === 403) {
+      router.replace(`/reports/${workId}/verify-code`);
+    }
+  }, [error, router, workId]);
+
   if (isLoading) {
     return (
       <div className="w-full">

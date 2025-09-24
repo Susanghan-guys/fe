@@ -45,9 +45,9 @@ const handleLogoutAndRedirect = () => {
     localStorage.clear();
     console.log("🧹 localStorage 클리어 완료");
 
-    // 일관성을 위해 홈으로 리다이렉션
-    window.location.replace("/home");
-    console.log("🔄 홈 페이지로 리디렉션 시도");
+    // 로그인 페이지로 리다이렉션
+    window.location.replace("/login");
+    console.log("🔄 로그인 페이지로 리디렉션 시도");
   }
 };
 

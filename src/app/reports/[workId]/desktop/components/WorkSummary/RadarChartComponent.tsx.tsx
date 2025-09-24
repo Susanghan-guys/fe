@@ -41,7 +41,13 @@ const SUBJECT_MAP = {
 } as const;
 
 const makeTickRenderer = (data: Datum[], isMobile: boolean) => {
-  const RadarTickLabel = (props: any) => {
+  const RadarTickLabel = (props: {
+    x?: string | number | undefined;
+    y?: string | number | undefined;
+    cx?: string | number | undefined;
+    cy?: string | number | undefined;
+    payload?: { value: string };
+  }) => {
     const { x, y, cx, cy, payload } = props;
     if (x == null || y == null || cx == null || cy == null) return <g />;
 

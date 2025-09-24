@@ -1,28 +1,30 @@
 import Tip from "../../Tip";
 import { BlueSpan } from "./BlueSpan";
 import DashList from "./DashList";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 function LotteWorld() {
+  const isMobile = useIsMobile();
   return (
     <div>
-      <div className="text-gray-900 font-T02-B mt-[108px] mb-[52px]">
+      <div className={`text-gray-900 font-T02-B ${isMobile ? 'mt-[50px] mb-[52px]' : 'mt-[108px] mb-[52px]'}`}>
         브리프 분석
       </div>
       {/* 브랜드 소개 */}
       <div>
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">브랜드 소개</div>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>브랜드 소개</div>
 
           <div className="space-y-[20px]">
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 1989년
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[10px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[10px]`}>
                   롯데월드 개원
                 </div>
-                <div className="flex gap-1 font-B02-R text-gray-500">
+                <div className={`flex gap-1 ${isMobile ? 'font-B02-R' : 'font-B02-R'} text-gray-500`}>
                   <div>-</div>
                   <div>
                     올해 개원 36주년을 맞은 국내 최초·최대 실내 테마파크로,
@@ -34,7 +36,7 @@ function LotteWorld() {
               </div>
             </div>
             <div className="flex gap-[16px]">
-              <div className="font-B01-M ">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} `}>
                 오랜 운영 노하우를 바탕으로 연령과 취향을 아우르는 어트랙션과
                 시즌 축제, 풍성한 온·오프라인 콘텐츠를 통해 손님들에게 특별한
                 경험과 즐거운 추억을 선사
@@ -61,12 +63,12 @@ function LotteWorld() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               - 대한민국 대표 테마파크, 다양한 어트렉션과 시즌 축제, 온/오프라인
               콘텐츠로 특별한 추억 선사
               <br />- 국내외 인기 IP등을 활용해 콘텐츠 영역을 확장, 세계관과
@@ -81,11 +83,11 @@ function LotteWorld() {
       </div>
 
       {/* 시장 상황 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">시장 상황</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>시장 상황</div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               <BlueSpan>
                 유명 IP나 오리지널 콘텐츠 이용한 몰입형 체험공간 또는 전시가
@@ -119,12 +121,12 @@ function LotteWorld() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 유명 IP나 오리지널 콘텐츠를 이용한 몰입형 체험공간/전시가 트렌드{" "}
               → 테마파크의 비일상적 경험이 높은 시너지로 작용 <br />
               - 뮤지엄, 체험존 등 다양한 체험공간이 융복합적으로 나타나면서
@@ -148,13 +150,13 @@ function LotteWorld() {
       </div>
 
       {/* 브랜드 상황 및 커뮤니케이션 타깃 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             브랜드 상황 및 커뮤니케이션 타깃
           </div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
                25년 연말 유명 영화 IP인{" "}
               <BlueSpan> 고질라&콩 의 몬스터버스 세계관</BlueSpan>을 도입한 신규
@@ -181,13 +183,13 @@ function LotteWorld() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
 
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               - 25년 신규 어트랙션오픈 예정 (고질라&콩)
               <br />- 1020 영타깃에겐 스토리/몰입형 다크라이드보다 스릴
               어트랙션에 대한 높은 선호도
@@ -211,11 +213,11 @@ function LotteWorld() {
       </div>
 
       {/* 해결 과제 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">해결 과제</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>해결 과제</div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               2005년  파라오의 분노  이후 20년 만에 도입하는 초대형 다크라이드에
               대한{" "}
@@ -239,12 +241,12 @@ function LotteWorld() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 초대형 다크라이드에 대한 기대감을 참신하게 각인시킬 수 있는
               온/오프라인 아이디어
               <br />- 국내 인지도 및 인기가 낮은 콩/고질라 IP를 고려, 1020
@@ -262,13 +264,13 @@ function LotteWorld() {
       </div>
 
       {/* 유의 및 참고사항 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             유의 및 참고사항
           </div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               오픈 예정 신규 어트랙션 콩X고질라: 더 라이드 소개
             </DashList>{" "}
@@ -291,12 +293,12 @@ function LotteWorld() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               → 참고사항이에요! IP 홍보니, IP와 세계관에 대한 충분한 이해도는
               필수겠죠?
             </div>

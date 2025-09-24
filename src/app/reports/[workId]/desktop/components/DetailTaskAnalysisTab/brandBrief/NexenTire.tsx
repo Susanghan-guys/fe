@@ -1,35 +1,37 @@
 import Tip from "../../Tip";
 import { BlueSpan } from "./BlueSpan";
 import DashList from "./DashList";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 function NexenTire() {
+  const isMobile = useIsMobile();
   return (
     <div>
-      <div className="text-gray-900 font-T02-B mt-[108px] mb-[52px]">
+      <div className={`text-gray-900 font-T02-B ${isMobile ? 'mt-[50px] mb-[52px]' : 'mt-[108px] mb-[52px]'}`}>
         브리프 분석
       </div>
       {/* 브랜드 소개 */}
       <div>
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">브랜드 소개</div>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>브랜드 소개</div>
           <div className="space-y-[20px]">
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 1942년
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[10px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[10px]`}>
                   흥아고무공업㈜으로 시작해, 올해로 창립 83주년을 맞이한 국내
                   대표 타이어 브랜드
                 </div>
               </div>
             </div>
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 2000년
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[10px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[10px]`}>
                   넥센타이어로 사명 변경, 글로벌 Top 10 타이어 브랜드 도약을
                   목표로 지속 성장 중 
                 </div>
@@ -38,12 +40,12 @@ function NexenTire() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               → 브랜드 소개에요, 크게 눈여겨 볼 만한 내용은 없어 보여요
             </div>
           </div>
@@ -51,11 +53,11 @@ function NexenTire() {
       </div>
 
       {/* 시장 상황 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">시장 상황</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>시장 상황</div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               국내 타이어 시장은{" "}
               <BlueSpan>Big 3사(넥센/한국/금호)가 90% 이상의 점유율 </BlueSpan>
@@ -77,12 +79,12 @@ function NexenTire() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 국내 타이어 브랜드 3사의 치열한 경쟁구도
               <br />- 넥센타이어의 브랜드 이미지 [젋은, 스타일리시한, 트렌디한,
               혁신적인]
@@ -95,13 +97,13 @@ function NexenTire() {
       </div>
 
       {/* 브랜드 상황 및 커뮤니케이션 타깃 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             브랜드 상황 및 커뮤니케이션 타깃
           </div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               2025년 <BlueSpan>[타이어, 본질에 대하여]</BlueSpan>라는 New.
               캠페인을 통해 <BlueSpan>브랜드의 차별화된 가치 제시</BlueSpan>
@@ -135,13 +137,13 @@ function NexenTire() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
 
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               - 2025 [타이어, 본질에 대하여]로 차별화된 브랜드 가치 제시 <br />-
               넥센타이어는 차량의 성능을 넘어, 운전자의 만족까지 확장하는
               차별화된 진정성과 가치 <br />- 성장을 위한 엔트리 타깃 20대와의
@@ -163,11 +165,11 @@ function NexenTire() {
       </div>
 
       {/* 해결 과제 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">해결 과제</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>해결 과제</div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               <BlueSpan>20대의 문화 트렌드를 반영</BlueSpan>해, 넥센타이어만의
               <BlueSpan> 진정성 있는 브랜드 가치와 기술력</BlueSpan>을
@@ -178,12 +180,12 @@ function NexenTire() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 20대의 문화 트렌드를 반영해, 넥센타이어만의 진정성있는 브랜드
               가치와 기술력 전달, 인지도와 팬덤을 이끄는 컬처마케팅/커뮤니케이션
               <br />
@@ -200,25 +202,25 @@ function NexenTire() {
       </div>
 
       {/* 유의 및 참고사항 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             유의 및 참고사항
           </div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               넥센타이어 CI 활용 시  We got you  슬로건 병행 표기 필수 
             </DashList>{" "}
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               → 로고 활용 조건입니다! 큰 의미는 없어요
             </div>
           </div>

@@ -1,18 +1,28 @@
 import React from "react";
 import { useDcaBriefEvaluation } from "@/hooks/queries";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface BriefInterpretationSectionProps {
   workId: number;
 }
 
-function BriefInterpretationSection({ workId }: BriefInterpretationSectionProps) {
+function BriefInterpretationSection({
+  workId,
+}: BriefInterpretationSectionProps) {
   const { data, isLoading } = useDcaBriefEvaluation(workId);
+  const isMobile = useIsMobile();
 
   if (isLoading) {
     return (
       <div>
         <div className="flex items-center gap-[10px]">
-          <div className="text-gray-900 font-T02-B">브리프 해석</div>
+          <div
+            className={`text-gray-900  ${
+              isMobile ? "font-T04-SB" : "font-T02-B"
+            }`}
+          >
+            브리프 해석
+          </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -27,7 +37,11 @@ function BriefInterpretationSection({ workId }: BriefInterpretationSectionProps)
             />
           </svg>
         </div>
-        <div className="font-B01-M text-gray-800 mt-[36px]">
+        <div
+          className={`font-B01-M text-gray-800 ${
+            isMobile ? "mt-[24px]" : "mt-[36px]"
+          }`}
+        >
           <div className="h-[20px] bg-gray-200 rounded w-3/4 mb-2 animate-pulse" />
           <div className="h-[20px] bg-gray-200 rounded w-5/6 mb-2 animate-pulse" />
           <div className="h-[20px] bg-gray-200 rounded w-2/3 animate-pulse" />
@@ -41,7 +55,13 @@ function BriefInterpretationSection({ workId }: BriefInterpretationSectionProps)
   return (
     <div>
       <div className="flex items-center gap-[10px]">
-        <div className="text-gray-900 font-T02-B">브리프 해석</div>
+        <div
+          className={`text-gray-900  ${
+            isMobile ? "font-T04-SB" : "font-T02-B"
+          }`}
+        >
+          브리프 해석
+        </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -57,13 +77,17 @@ function BriefInterpretationSection({ workId }: BriefInterpretationSectionProps)
         </svg>
       </div>
 
-      <div className="font-B01-M text-gray-800 mt-[36px]">
+      <div
+        className={`mt-[36px] text-gray-800 ${
+          isMobile ? "font-B02-R" : "font-B01-M"
+        }`}
+      >
         {interpretation ?? (
           <>
-            브리프의 핵심인 &apos;부드러움&apos; 자산을 유지하며 1524 여성 타겟에게 새로운
-            매력을 부여하는 방향을 정확히 반영했다. <br />
-            버스 창문이라는 매체 특성을 활용해 &apos;채워진다&apos;는 감각적 메시지를 전달한
-            점이 브랜드 상황과 해결 과제에 부합한다
+            브리프의 핵심인 &apos;부드러움&apos; 자산을 유지하며 1524 여성
+            타겟에게 새로운 매력을 부여하는 방향을 정확히 반영했다. <br />
+            버스 창문이라는 매체 특성을 활용해 &apos;채워진다&apos;는 감각적
+            메시지를 전달한 점이 브랜드 상황과 해결 과제에 부합한다
           </>
         )}
       </div>

@@ -1,25 +1,27 @@
 import Tip from "../../Tip";
 import { BlueSpan } from "./BlueSpan";
 import DashList from "./DashList";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 function SBIBank() {
+  const isMobile = useIsMobile();
   return (
     <div>
-      <div className="text-gray-900 font-T02-B mt-[108px] mb-[52px]">
+      <div className={`text-gray-900 font-T02-B ${isMobile ? 'mt-[50px] mb-[52px]' : 'mt-[108px] mb-[52px]'}`}>
         브리프 분석
       </div>
       {/* 브랜드 소개 */}
       <div>
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">브랜드 소개</div>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>브랜드 소개</div>
 
           <div className="space-y-[20px]">
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 2019년
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[10px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[10px]`}>
                   사이다뱅크는 SBI저축은행에서 고객에게 더욱 혁신적이고 편리한
                   금융 경험을 제공하기 위해 2019년에 출시한 모바일 뱅킹 앱(App)
                   (*가입자 약 160만 명, 2025년 2월 기준)
@@ -28,7 +30,7 @@ function SBIBank() {
             </div>
             <div className="flex gap-[16px]">
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[10px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[10px]`}>
                   하루만 맡겨도 이자를 주는 파킹통장과 같은 예/적금 상품 및
                   비교대출 플랫폼 대비 금리할인, 한도증액 혜택이 있는 다이렉트
                   신용대출 상품 등 다양한{" "}
@@ -61,12 +63,12 @@ function SBIBank() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               - 사이다 뱅크에 대한 소개와 경쟁사 대비 차별성 있는 기능에 대한
               소개 (편의성, 실질적 혜택, 안전성)
               <br />* 저축은행에 대한 추가적인 설명
@@ -81,11 +83,11 @@ function SBIBank() {
       </div>
 
       {/* 시장 상황 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">시장 상황</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>시장 상황</div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               <BlueSpan>간편/접근성으로 수요를 이끌던 인터넷 뱅킹 3사</BlueSpan>{" "}
               (카카오뱅크, 케이뱅크, 토스)가 저축은행 주요 수익군인 중저신용자
@@ -106,12 +108,12 @@ function SBIBank() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 간편/편의성을 강점으로, 인터넷 뱅킹 3사의 성장 → 사이다뱅크의
               주요 수익군까지 공급 확대로 공격적 접근
               <br />- 1 금융권은 계열사의 통합 서비스를 제공하는 슈퍼앱으로 경쟁
@@ -129,13 +131,13 @@ function SBIBank() {
       </div>
 
       {/* 브랜드 상황 및 커뮤니케이션 타깃 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             브랜드 상황 및 커뮤니케이션 타깃
           </div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               1등이라는 위상이 아닌 <BlueSpan>‘실질적 역량’ 강조</BlueSpan>로
               브랜드 가치 확립을 위한 <BlueSpan>[실전금융]</BlueSpan> 캠페인
@@ -144,7 +146,7 @@ function SBIBank() {
               <br />→ 모바일 뱅킹 앱 상기도 Top3인 카카오뱅크, 토스,
               신한SOL뱅크의 평균값 63.5% vs. 사이다뱅크 25.2%, OK저축은행 26.3%
               <br />
-              <span className="text-gray-500 font-B02-R">
+              <span className={`text-gray-500 ${isMobile ? 'font-B02-R' : 'font-B02-R'}`}>
                 (*출처: 2024년 하반기 SBI저축은행 브랜드 Tracking 조사)
               </span>
               <br />
@@ -153,7 +155,7 @@ function SBIBank() {
               보안 등 고른 만족도를 보이며,{" "}
               <BlueSpan>지속 사용 의향은 81%로 높은 편</BlueSpan>
               <br />
-              <span className="text-gray-500 font-B02-R">
+              <span className={`text-gray-500 ${isMobile ? 'font-B02-R' : 'font-B02-R'}`}>
                 (*출처: 2024년 하반기 SBI저축은행 브랜드 Tracking 조사)
               </span>
               <br />
@@ -171,13 +173,13 @@ function SBIBank() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
 
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               - 1등이라는 위상이 아닌 ‘실질적 역량’ 강조 → 실전금융 캠페인 진행
               중<br />- 저축은행 앱의 상기도 저조
               <br />- 사용자들은 전반적인 앱 기능에 만족도를 보이며 높은 지속
@@ -198,11 +200,11 @@ function SBIBank() {
       </div>
 
       {/* 해결 과제 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">해결 과제</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>해결 과제</div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               모바일 뱅킹에 익숙한{" "}
               <BlueSpan>MZ세대 대상 사이다뱅크 인지도 제고</BlueSpan>, 나아가{" "}
@@ -211,12 +213,12 @@ function SBIBank() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 모바일 뱅킹에 익숙한 MZ 세대 대상 인지도 제고 및 설치유도까지
               이어지는 캠페인
               <br />
@@ -228,13 +230,13 @@ function SBIBank() {
       </div>
 
       {/* 유의 및 참고사항 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             유의 및 참고사항
           </div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               예/적금 혹은 대출상품으로 국한하지 않고{" "}
               <BlueSpan>사이다뱅크 앱 자체에 대한 인지도 제고</BlueSpan>를 위한
@@ -243,12 +245,12 @@ function SBIBank() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 예/적금 및 대출상품으로 국한하지 않고, 앱 자체에 대한 인지도
               제고를 위한 접근
               <br />

@@ -1,5 +1,6 @@
 import React from "react";
 import { useDcaBriefEvaluation } from "@/hooks/queries";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface ReflectionConsistencySectionProps {
   workId: number;
@@ -10,7 +11,7 @@ function ReflectionConsistencySection({
 }: ReflectionConsistencySectionProps) {
   // DCA 브리프 해석 데이터 가져오기
   const { data: briefData, isLoading, error } = useDcaBriefEvaluation(workId);
-
+  const isMobile = useIsMobile();
   // 로딩 중일 때 스켈레톤 UI 표시
   if (isLoading) {
     return (
@@ -28,8 +29,18 @@ function ReflectionConsistencySection({
     return (
       <div className="flex gap-[53px]">
         <div className="flex-1">
-          <h3 className="font-T03-SB text-blue-main mb-[23px]">반영 일관성</h3>
-          <p className="font-B01-R text-gray-800">
+          <h3
+            className={` text-blue-main mb-[23px] ${
+              isMobile ? "font-B01-SB" : "font-T03-SB"
+            }`}
+          >
+            반영 일관성
+          </h3>
+          <p
+            className={`text-gray-800 ${
+              isMobile ? "font-B02-R" : "font-B01-R"
+            }`}
+          >
             기획 의도에서 제시한 &apos;허전함을 부드럽게 채운다&apos;는 콘셉트가
             매체 아이디어와 실행 과정 전반에 일관되게 드러난다. 버스 창문이
             열리고 닫히는 물리적 구조를 활용해 &apos;채워짐&apos;의 상징을
@@ -47,8 +58,18 @@ function ReflectionConsistencySection({
   return (
     <div className="flex gap-[53px]">
       <div className="flex-1">
-        <h3 className="font-T03-SB text-blue-main mb-[23px]">반영 일관성</h3>
-        <p className="font-B01-R text-gray-800">{consistency}</p>
+        <h3
+          className={` text-blue-main mb-[23px] ${
+            isMobile ? "font-B01-SB" : "font-T03-SB"
+          }`}
+        >
+          반영 일관성
+        </h3>
+        <p
+          className={`text-gray-800 ${isMobile ? "font-B02-R" : "font-B01-R"}`}
+        >
+          {consistency}
+        </p>
       </div>
     </div>
   );

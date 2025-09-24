@@ -1,25 +1,27 @@
 import Tip from "../../Tip";
 import { BlueSpan } from "./BlueSpan";
 import DashList from "./DashList";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 function LotteGiants() {
+  const isMobile = useIsMobile();
   return (
     <div>
-      <div className="text-gray-900 font-T02-B mt-[108px] mb-[52px]">
+      <div className={`text-gray-900 font-T02-B ${isMobile ? 'mt-[50px] mb-[52px]' : 'mt-[108px] mb-[52px]'}`}>
         브리프 분석
       </div>
       {/* 브랜드 소개 */}
       <div>
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">브랜드 소개</div>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>브랜드 소개</div>
 
           <div className="space-y-[20px]">
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 1975년
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[10px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[10px]`}>
                   실업야구 창단 이래로 1982년 프로야구단으로 전환하면서 지금까지
                   <BlueSpan> 팀명, 연고지, 모그룹이 바뀌지 않는 전통</BlueSpan>
                   이 있는 명문 구단
@@ -27,7 +29,7 @@ function LotteGiants() {
               </div>
             </div>
             <div className="flex gap-[16px]">
-              <div className="font-B01-M ">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} `}>
                 대한민국 최고의 인기 스포츠구단으로
                 <BlueSpan> 연고지 부산은 야구의 도시 ‘구도(球都)’</BlueSpan>라
                 불리고 있음
@@ -43,12 +45,12 @@ function LotteGiants() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               - 팀명, 연고지, 모그룹이 바뀌지 않는 전통 명문 구단 <br />-
               대한민국 최고 인기 구단, 야구의 도시 부산 연고지의 전국구 팬덤과
               독보적인 응원문화
@@ -66,11 +68,11 @@ function LotteGiants() {
       </div>
 
       {/* 시장 상황 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">시장 상황</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>시장 상황</div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               24시즌 프로야구 역대 최초 1천만 관중 달성, 올해 더욱 빠른 속도로
               흥행가도를 달리고 있음
@@ -85,12 +87,12 @@ function LotteGiants() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 국내 프로야구 역대 최고 흥행
               <br />- 구매력 높은 2030 여성을 주 소비층으로 시작하여, 신규 팬
               유입을 위한 마케팅 다양화 중<br />
@@ -105,13 +107,13 @@ function LotteGiants() {
       </div>
 
       {/* 브랜드 상황 및 커뮤니케이션 타깃 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             브랜드 상황 및 커뮤니케이션 타깃
           </div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               롯데자이언츠는 명실상부 No.1 인기 프로야구단임
               <br />
@@ -126,13 +128,13 @@ function LotteGiants() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
 
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               - 현재 팬을 만족시키고, 신규 팬 유입을 위한 마케팅 필요
               <br />- 미래 팬 확보를 위해 1020세대를 주 타깃으로 설정
               <br />
@@ -149,11 +151,11 @@ function LotteGiants() {
       </div>
 
       {/* 해결 과제 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">해결 과제</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>해결 과제</div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               <BlueSpan>롯데자이언츠만 할 수 있는</BlueSpan> 유니크한 이벤트
               프로모션 제안(팬덤, 연고지 등 고려)
@@ -167,12 +169,12 @@ function LotteGiants() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 롯데 자이언츠만이 할 수 있는 유니크한 이벤트 프로모션 / 비
               야구팬도 유입시킬 수 있는 외적 즐길거리
               <br />
@@ -190,13 +192,13 @@ function LotteGiants() {
       </div>
 
       {/* 유의 및 참고사항 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             유의 및 참고사항
           </div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               MLB(미국 프로야구), NBA(미국 프로농구), NPB(일본 프로야구) 등 해외
               스포츠 리그 벤치마킹 가능하나, 롯데자이언츠만의 특색이 있어야
@@ -229,12 +231,12 @@ function LotteGiants() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 해외 구단 벤치마킹 가능하나, 롯데자이언츠 만의 특색이 있어야함
               <br />- 프로모션 진행 시점은 미정
               <br />
