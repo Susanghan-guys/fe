@@ -22,7 +22,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.CHASU_TOKEN }}
         with:
           source-directory: "output"
-          destination-github-username: ChaeSu
+          destination-github-username: Chasyuss
           destination-repository-name: fe
           user-email: ${{ secrets.CHASU_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
