@@ -1,9 +1,10 @@
 "use client";
 import TextInput from "@/components/common/TextInput";
 import { useSubmitStore } from "@/store/useSubmitStore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import DropDownInput from "@/components/common/DropDownInput";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const CATEGORY_OPTIONS = [
   "Visual",
@@ -30,6 +31,9 @@ const WorkInformation = () => {
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
   const [number, setNumber] = useState("");
+
+  const titleEventSent = useRef(false);
+  const numberEventSent = useRef(false);
 
   const setWorkInfoFilled = useSubmitStore((s) => s.setWorkInfoFilled);
   const setField = useSubmitStore((s) => s.setField);
@@ -77,6 +81,17 @@ const WorkInformation = () => {
             setTitle(e.target.value);
             setIsWriting(true);
           }}
+          onFocus={() => {
+            titleEventSent.current = false; // 다시 수정할 수 있도록 플래그 리셋
+          }}
+          onBlur={() => {
+            if (title.trim() && !titleEventSent.current) {
+              trackGAEvent(GA_EVENT.InputTitleDca, {
+                screen: "AP"
+              });
+              titleEventSent.current = true;
+            }
+          }}
           className="w-full"
         />
       </div>
@@ -93,6 +108,9 @@ const WorkInformation = () => {
             onChange={(val) => {
               setCategory(val);
               setIsWriting(true);
+              trackGAEvent(GA_EVENT.SelectCategoryDca, {
+                screen: "AP"
+              });
             }}
             placeholder="출품 카테고리를 선택하세요."
             options={CATEGORY_OPTIONS}
@@ -106,6 +124,9 @@ const WorkInformation = () => {
             onChange={(val) => {
               setBrand(val);
               setIsWriting(true);
+              trackGAEvent(GA_EVENT.SelectBrandDca, {
+                screen: "AP"
+              });
             }}
             placeholder="출품 브랜드를 선택하세요."
             options={BRAND_OPTIONS}
@@ -125,6 +146,17 @@ const WorkInformation = () => {
             onChange={(e) => {
               setNumber(e.target.value);
               setIsWriting(true);
+            }}
+            onFocus={() => {
+              numberEventSent.current = false; // 다시 수정할 수 있도록 플래그 리셋
+            }}
+            onBlur={() => {
+              if (number.trim() && !numberEventSent.current) {
+                trackGAEvent(GA_EVENT.InputApplycodeDca, {
+                  screen: "AP"
+                });
+                numberEventSent.current = true;
+              }
             }}
             className="pl-[40px] w-full"
           />

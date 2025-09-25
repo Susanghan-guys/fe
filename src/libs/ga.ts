@@ -29,6 +29,18 @@ export const GA_EVENT = {
   ClickLogout: "click_logout",
   ClickWithdraw: "click_withdraw",
   SelectWithdrawReason: "select_withdraw_reason",
+  ApplySelectDca: "apply_select_dca",
+  ApplySelectYcc: "apply_select_ycc",
+  ReportStep1Next: "report_step1_next",
+  ReportStep1Back: "report_step1_back",
+  ReportStep2Next: "report_step2_next",
+  ReportStep2Back: "report_step2_back",
+  ReportStep3Next: "report_step3_next",
+  ReportStep3Back: "report_step3_back",
+  InputTitleDca: "input_title_dca",
+  SelectCategoryDca: "select_category_dca",
+  SelectBrandDca: "select_brand_dca",
+  InputApplycodeDca: "input_applycode_dca",
 } as const;
 
 export type GAEventName = (typeof GA_EVENT)[keyof typeof GA_EVENT] | string;
