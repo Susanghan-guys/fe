@@ -4,12 +4,15 @@ import React, { useEffect, useState } from "react";
 import { Google, KaKao, Naver } from "../../../public";
 import ToolTip from "./_components/Tooltip";
 import Header from "@/components/common/Header";
+import { useSearchParams } from "next/navigation";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const Page = () => {
   const [lastProvider, setLastProvider] = useState<string | null>(null);
   const [showTooltip, setShowTooltip] = useState(true);
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -31,7 +34,8 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#FEE500] cursor-pointer"
             onClick={() => {
-              window.location.href = `${BACKEND_URL}/oauth2/authorization/kakao`;
+              const redirectParam = redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : '';
+              window.location.href = `${BACKEND_URL}/oauth2/authorization/kakao${redirectParam}`;
             }}
           >
             {lastProvider === "KAKAO" && showTooltip && (
@@ -54,7 +58,8 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#FFF] border border-[#E7E7E7] cursor-pointer"
             onClick={() => {
-              window.location.href = `${BACKEND_URL}/oauth2/authorization/google`;
+              const redirectParam = redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : '';
+              window.location.href = `${BACKEND_URL}/oauth2/authorization/google${redirectParam}`;
             }}
           >
             {lastProvider === "GOOGLE" && showTooltip && (
@@ -77,7 +82,8 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#03C75A] cursor-pointer"
             onClick={() => {
-              window.location.href = `${BACKEND_URL}/oauth2/authorization/naver`;
+              const redirectParam = redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : '';
+              window.location.href = `${BACKEND_URL}/oauth2/authorization/naver${redirectParam}`;
             }}
           >
             {lastProvider === "NAVER" && showTooltip && (

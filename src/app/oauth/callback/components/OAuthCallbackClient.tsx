@@ -10,6 +10,8 @@ export default function OAuthCallbackClient() {
 
   useEffect(() => {
     const code = searchParams.get("code");
+    const redirectTo = searchParams.get("redirect");
+    
     if (code) {
       exchangeCodeForToken(code)
         .then((data) => {
@@ -19,7 +21,13 @@ export default function OAuthCallbackClient() {
           localStorage.setItem("name", data.name);
           localStorage.setItem("profileImage", data.profileImage);
           localStorage.setItem("socialLogin", data.socialLogin);
-          router.replace(data.isOnboarded ? "/home" : "/sign-up");
+          
+          // 리다이렉트 URL이 있으면 해당 URL로, 없으면 기본 로직 사용
+          if (redirectTo) {
+            router.replace(redirectTo);
+          } else {
+            router.replace(data.isOnboarded ? "/home" : "/sign-up");
+          }
         })
         .catch(() => {
           alert("로그인에 실패했습니다.");

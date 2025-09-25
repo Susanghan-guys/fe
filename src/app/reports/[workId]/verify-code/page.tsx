@@ -47,7 +47,7 @@ function VerifyCodePage() {
   };
 
   return (
-    <AuthGuard>
+    <AuthGuard redirectTo={`/reports/${workId}/verify-code`}>
       <div className="min-h-screen ">
         <Header />
         <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4 bg-gray-100">
