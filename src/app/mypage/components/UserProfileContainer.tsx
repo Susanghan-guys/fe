@@ -1,10 +1,11 @@
 "use client";
 
 import React, { Suspense, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useUserMe } from "@/hooks/queries/useUser";
 import UserProfilePresentor from "./UserProfilePresentor";
 import UserProfileSkeleton from "@/components/common/UserProfileSkeleton";
+import { GA_EVENT, trackGAEvent } from "@/libs/ga";
 
 interface UserProfileContainerProps {
   className?: string;
@@ -21,6 +22,7 @@ interface ApiError {
 // 실제 데이터를 가져오는 컴포넌트
 function UserProfileData({ className }: { className: string }) {
   const router = useRouter();
+  const pathname = usePathname();
   const { data: userData, error, isLoading } = useUserMe();
   const [mounted, setMounted] = useState(false);
 
@@ -54,10 +56,12 @@ function UserProfileData({ className }: { className: string }) {
   }, [error]);
 
   const handleProfileClick = () => {
+    trackGAEvent(GA_EVENT.NameChange, {
+      screen: "PF",
+    });
     router.push("/mypage/edit");
   };
 
-  // 클라이언트에서 마운트되기 전까지는 스켈레톤 표시
   if (!mounted || isLoading) {
     return <UserProfileSkeleton className={className} />;
   }

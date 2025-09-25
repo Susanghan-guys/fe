@@ -13,6 +13,7 @@ import DivisionLine from "../components/DivisionLine";
 import { withdrawUser, WithdrawalReason } from "@/app/_apis/user";
 import WithdarwConfirmModal from "./components/WithdarwConfirmModal";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 export default function WithdrawPage() {
   const isMobile = useIsMobile();
@@ -37,11 +38,21 @@ export default function WithdrawPage() {
 
   const handleReasonChange = (reasonId: WithdrawalReason) => {
     setSelectedReasons((prev) => {
-      if (prev.includes(reasonId)) {
-        return prev.filter((id) => id !== reasonId);
-      } else {
-        return [...prev, reasonId];
-      }
+      const newReasons = prev.includes(reasonId)
+        ? prev.filter((id) => id !== reasonId)
+        : [...prev, reasonId];
+      
+      // 해당 reasonId의 라벨 찾기
+      const reasonOption = reasonsOptions.find(option => option.id === reasonId);
+      const reasonLabel = reasonOption ? reasonOption.label : reasonId;
+      
+      // GA 이벤트 전송
+      trackGAEvent(GA_EVENT.SelectWithdrawReason, {
+        withdraw_option: reasonLabel,
+        screen: "PF"
+      });
+      
+      return newReasons;
     });
   };
 
@@ -112,11 +123,11 @@ export default function WithdrawPage() {
     <div className="min-h-screen bg-white sm:bg-gray-100">
       <Header />
 
-      <div className="flex sm:items-center sm:justify-center">
+      <div className="flex sm:items-center sm:justify-center h-[calc(100vh-50px)]">
         <div
           className={`bg-white rounded-[20px] ${
             isMobile
-              ? "w-full px-[20px] pt-[50px] flex flex-col h-[calc(100vh-50px)]"
+              ? "w-full px-[20px] pt-[50px] flex flex-col"
               : "pl-[50px] pr-[42px] py-[52px] w-full max-w-md"
           }`}
         >
@@ -163,7 +174,13 @@ export default function WithdrawPage() {
             <label className="flex items-center cursor-pointer mb-[13px]">
               <Checkbox
                 checked={isOtherSelected}
-                onChange={() => setIsOtherSelected(!isOtherSelected)}
+                onChange={() => {
+                  setIsOtherSelected(!isOtherSelected);
+                  trackGAEvent(GA_EVENT.SelectWithdrawReason, {
+                    withdraw_option: "기타",
+                    screen: "PF"
+                  });
+                }}
                 className="mr-[14px]"
               />
               <span className="font-B02-M text-gray-950">기타</span>

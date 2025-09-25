@@ -7,13 +7,12 @@ function DaehongSlide() {
   const router = useRouter();
 
   const handleapplicationClick = () => {
-    trackGAEvent(GA_EVENT.ClickApply, {
-      competition: "DCA",
-      cta: "신청하러가기",
+    trackGAEvent(GA_EVENT.ClickDcaApply, {
       screen: "HM",
     });
     router.push("/application");
   };
+  
   return (
     <div
       className="w-full min-h-[400px] h-screen flex flex-col items-center justify-center bg-no-repeat bg-cover bg-center relative"

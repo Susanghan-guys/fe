@@ -8,12 +8,27 @@ export type GAEventParams = Record<
 >;
 
 export const GA_EVENT = {
-  ClickHeader: "click_header",
   ClickApply: "click_apply",
+  ClickMyReport: "click_my_report",
+  ClickDcaApply: "click_dca_apply",
+  ClickYccApply: "click_ycc_apply",
+  ViewReviews: "view_reviews",
+  ClickProfile: "click_profile",
   ClickShare: "click_share",
   SubmitReport: "submit_report",
   Login: "login",
   SignUp: "sign_up",
+  LoginKakao: "login_kakao",
+  LoginNaver: "login_naver",
+  LoginGoogle: "login_google",
+  ViewProfileInfo: "view_profile_info",
+  NameChange: "name_change",
+  ClickInquiry: "click_inquiry",
+  ViewPrivacyPolicy: "view_privacy_policy",
+  ViewTermsPolicy: "view_terms_policy",
+  ClickLogout: "click_logout",
+  ClickWithdraw: "click_withdraw",
+  SelectWithdrawReason: "select_withdraw_reason",
 } as const;
 
 export type GAEventName = (typeof GA_EVENT)[keyof typeof GA_EVENT] | string;
