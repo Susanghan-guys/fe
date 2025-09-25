@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface ContestCardProps {
   width?: number;
@@ -13,43 +15,62 @@ export default function ContestCard({
   className = "",
   contest,
 }: ContestCardProps) {
+  const isMobile = useIsMobile();
+
+  const cardWidth = isMobile ? "100%" : `${width}`;
+  const cardHeight = isMobile ? undefined : height;
+
   return (
-    <div className="relative">
-      <div className="absolute top-[50px] left-[37px] font-T01-B text-white">
+    <div className={`relative ${isMobile ? "w-full" : ""}`}>
+      <div
+        className={`absolute text-white ${
+          isMobile
+            ? "top-[30px] left-[22px] font-T04-SB"
+            : "top-[50px] left-[37px] font-T01-B"
+        }`}
+      >
         {contest}는 이런 공모전이에요
       </div>
 
-      <div className="absolute top-[366px] left-[37px] text-blue-100 font-B01-M">
+      <div
+        className={`absolute text-blue-100 ${
+          isMobile
+            ? "top-[268px] left-[22px] font-C01-R leading-relaxed"
+            : "top-[366px] left-[37px] font-B01-M"
+        }`}
+      >
         {contest === "DCA" ? (
-          <div>
+          <>
             DCA는 브랜드 요구사항을 핵심 평가 기준으로 삼아,
-            <br /> 이를 정확히 이해하고 반영하는 역량을 평가해요.
             <br />
-            <br /> 동시에 자유로운 크리에이티브를 펼치기에 적합해,
-            <br /> 클라이언트 니즈에 맞는 창의력을 연습하기에 좋은 <br />
-            공모전이에요.
-          </div>
+            이를 정확히 이해하고 반영하는 역량을 평가해요.
+            <br />
+            <br />
+            동시에 자유로운 크리에이티브를 펼치기에 적합해,
+            <br />
+            클라이언트 니즈에 맞는 창의력을 연습하기에 좋은 공모전이에요.
+          </>
         ) : (
-          <div>
-            YCC는 실제 아이디어 구현 과정을 포함한 유일한
+          <>
+            YCC는 실제 아이디어 구현 과정을 포함한 유일한 공모전으로,
             <br />
-            공모전으로, 실현 가능성을 핵심 평가 기준으로 삼아요.
+            실현 가능성을 핵심 평가 기준으로 삼아요.
             <br />
             <br />
             동시에 적절한 사회문제를 선정해
             <br />
             소셜 임팩트를 만들어내는 전 과정을 평가합니다.
-          </div>
+          </>
         )}
       </div>
 
       <svg
-        width={width}
-        height={height}
+        width={cardWidth}
+        height={cardHeight}
         viewBox="0 0 478 554"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={className}
+        className={`${className} ${isMobile ? "w-full h-auto" : ""}`}
       >
         <g clipPath="url(#clip0_2438_2714)">
           <rect width="478" height="554" rx="16" fill="#256AFF" />

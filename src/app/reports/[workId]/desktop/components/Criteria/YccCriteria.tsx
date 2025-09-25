@@ -25,12 +25,6 @@ const YccCriteria = () => {
       <SelectAgenda />
       <Effect />
       <Ability />
-      {/* <ButtonBase
-        label="리포트로 돌아가기"
-        size="S"
-        className="mt-[148px] self-center"
-        onClick={() => router.push("/report")}
-      /> */}
     </div>
   );
 };

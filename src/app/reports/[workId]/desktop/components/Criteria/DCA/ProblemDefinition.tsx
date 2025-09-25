@@ -1,5 +1,6 @@
 import React from "react";
 import SectionBlock from "../SectionBlock";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type Item = {
   id: number;
@@ -36,8 +37,9 @@ const PROBLEM_DEFINE_ITEMS: Item[] = [
 ];
 
 const ProblemDefinition = () => {
+  const isMobile = useIsMobile();
   return (
-    <div className="mt-[108px] flex flex-col">
+    <div className={`${isMobile ? "mt-9" : "mt-[108px]"} flex flex-col`}>
       <SectionBlock
         heading="문제 정의"
         description={`캠페인이 해결하고자 하는 핵심 문제를 브리프의 단순 재진술에 그치지않고,

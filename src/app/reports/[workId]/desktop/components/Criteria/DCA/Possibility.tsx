@@ -1,5 +1,6 @@
 import React from "react";
 import SectionBlock from "../SectionBlock";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type Item = {
   id: number;
@@ -36,8 +37,9 @@ const POSSIBILITY_ITEMS: Item[] = [
 ];
 
 const Possibility = () => {
+  const isMobile = useIsMobile();
   return (
-    <div className="mt-[108px] flex flex-col">
+    <div className={`${isMobile ? "mt-9" : "mt-[108px]"} flex flex-col`}>
       <SectionBlock
         heading="실현 가능성"
         description={` 캠페인 아이디어가 주어진 예산, 기간, 매체, 실행 환경 등 현실적인 제약을 고려하여 실행 가능한 수준으로 설계되었으며,

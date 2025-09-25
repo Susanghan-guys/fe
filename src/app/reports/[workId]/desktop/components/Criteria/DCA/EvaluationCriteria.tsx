@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import SectionBlock from "../SectionBlock";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type Item = {
   id: number;
@@ -36,14 +38,22 @@ const EVALUATION_ITEMS: Item[] = [
 ];
 
 const EvaluationCriteria = () => {
+  const isMobile = useIsMobile();
+
   return (
-    <div className="mt-[108px] flex flex-col">
-      <div className="text-gray-900 font-T02-B"> 평가 기준</div>
+    <div className={`${isMobile ? "mt-9" : "mt-[108px]"} flex flex-col`}>
+      <div
+        className={
+          isMobile ? "text-gray-900 font-B01-B" : "text-gray-900 font-T02-B "
+        }
+      >
+        평가 기준
+      </div>
 
       <SectionBlock
         heading="타겟 적합성"
         description={`작품에서 브리프가 제시한 주요 타겟이 가진 특성 (니즈, 관심사, 행동 양식)을 명확히 정의했으며,
-          이것이 캠페인 아이디어와 논리적으로 연결되어 있는지를 평가함.`}
+이것이 캠페인 아이디어와 논리적으로 연결되어 있는지를 평가함.`}
         items={EVALUATION_ITEMS}
       />
     </div>

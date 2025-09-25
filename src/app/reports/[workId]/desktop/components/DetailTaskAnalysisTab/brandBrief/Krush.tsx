@@ -1,18 +1,20 @@
 import Tip from "../../Tip";
 import { BlueSpan } from "./BlueSpan";
 import DashList from "./DashList";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 function Krush() {
+  const isMobile = useIsMobile();
   return (
     <div>
-      <div className="text-gray-900 font-T02-B mt-[108px] mb-[52px]">
+      <div className={`text-gray-900 font-T02-B ${isMobile ? 'mt-[50px] mb-[52px]' : 'mt-[108px] mb-[52px]'}`}>
         브리프 분석
       </div>
       {/* 브랜드 소개 */}
       <div>
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">브랜드 소개</div>
-          <div className="font-B01-M text-gray-800">
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>브랜드 소개</div>
+          <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800`}>
             크러시(KRUSH)는 반하다, 부수다 라는 뜻의 영단어  Crush 에
             롯데칠성음료의 맥주 브랜드 클라우드(Kloud)의 헤리티지를 담은 알파벳
             K를 더한 단어로, 낡은 관습을 부수고, 새로움으로 매혹한다는 뜻을 담은
@@ -20,16 +22,16 @@ function Krush() {
           </div>
           <div className="space-y-[20px] mt-[20px]">
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 23년 11월
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[12px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[12px]`}>
                   기존의 맥주 브랜드와 선을 긋는{" "}
                   <BlueSpan>나와 가장 가까운 4세대 맥주</BlueSpan> 라는 차별화된
                   컨셉으로 런칭
                 </div>
-                <div className="flex gap-1 font-B02-R text-gray-500 mt-[12px]">
+                <div className={`flex gap-1 ${isMobile ? 'font-B02-R' : 'font-B02-R'} text-gray-500 mt-[12px]`}>
                   <div>-</div>
                   <div>
                     제품 패키지에서도{" "}
@@ -44,11 +46,11 @@ function Krush() {
               </div>
             </div>
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 25년 5월
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[12px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[12px]`}>
                   새롭게 출시된 <BlueSpan>풀오픈캔</BlueSpan> 은 특히 일반적인
                   캔맥주와 다른 독특한 캡 구조가 적용됨
                   <br />캔 상단 탭 전체가 시원하게 열리는 형태라 마치{" "}
@@ -57,7 +59,7 @@ function Krush() {
                   <BlueSpan> 섞어 마시기</BlueSpan>에 좋음, 음용 시 맛과 함께
                   <BlueSpan> 시각적인 즐거움</BlueSpan>도 느낄 수 있는 것이 특징
                 </div>
-                <div className="flex gap-1 font-B02-R text-gray-500 mt-[12px]">
+                <div className={`flex gap-1 ${isMobile ? 'font-B02-R' : 'font-B02-R'} text-gray-500 mt-[12px]`}>
                   <div>-</div>
                   <div>
                     자사 클라우드대비 22% 높아진 강탄산(탄산볼륨 3.3)으로,{" "}
@@ -69,12 +71,12 @@ function Krush() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               - 기존 맥주와 선을 달리하는 ‘4세대 맥주’
               <br />- 청략감과 탄산을 강조하는 패키지 디자인 & 국내 맥주 중 가장
               큰 탄산압
@@ -92,11 +94,11 @@ function Krush() {
       </div>
 
       {/* 시장 상황 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">시장 상황</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>시장 상황</div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <div className="flex gap-[3.5px]">
               <div>-</div>
               <div>
@@ -124,12 +126,12 @@ function Krush() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="font-B01-R gap-[3.5px]">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} gap-[3.5px]`}>
               - 한국 주류 문화인 ‘다수결 주류 선택’, ‘입점 된 제품 중에 고르는
               관행’으로 인한 신제품의 시장 진입 어려움
               <br />
@@ -146,13 +148,13 @@ function Krush() {
       </div>
 
       {/* 브랜드 상황 및 커뮤니케이션 타깃 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             브랜드 상황 및 커뮤니케이션 타깃
           </div>
 
-          <div className="space-y-[20px] font-B01-M">
+          <div className={`space-y-[20px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <div className="flex gap-[3.5px]">
               <div>-</div>
               <div>
@@ -177,12 +179,12 @@ function Krush() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 새로움을 추구하고, 개인의 취향과 자기표현을 중요시하는 Z세대와
               모델 카리나
               <br />- 크게 터지는 탄산 러시 캠페인 <br />
@@ -198,11 +200,11 @@ function Krush() {
       </div>
 
       {/* 해결 과제 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">해결 과제</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>해결 과제</div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <DashList>
               신규 출시된 풀오픈캔 제품을 통해 소비자들에게 크러시만의
               <BlueSpan> 차별화된 음용 경험과 브랜드의 뉴니스</BlueSpan> 주고자
@@ -221,12 +223,12 @@ function Krush() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className=" font-B01-R">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 크러시 풀 오픈 캔의 USP를 통해 차별화된 음용경험을 제공하여 신규
               음용/재음용을 유도하는 것이 목표 <br />
               <br />
@@ -242,13 +244,13 @@ function Krush() {
       </div>
 
       {/* 유의 및 참고사항 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             유의 및 참고사항
           </div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <div className="flex gap-[3.5px]">
               <div>-</div>
               <div>
@@ -290,12 +292,12 @@ function Krush() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className=" font-B01-R">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - PUSH형 메시지 전달, 단발성 행사가 아닌 자발적 참여와 확산이
               가능한 캠페인 제안
               <br />

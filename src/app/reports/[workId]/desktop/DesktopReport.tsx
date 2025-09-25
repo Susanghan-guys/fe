@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useReportDetail } from "@/hooks/queries";
-import ContestAnalysis from "./components/ContestAnalysisTab/ContestAnalysis";
+
 import DetailTaskAnalysis from "./components/DetailTaskAnalysisTab/DetailTaskAnalysis";
 import WorkEvaluation from "./components/WorkSummary/WorkEvaluation";
 import { isAxiosError } from "axios";
+import ContestAnalysis from "./components/ContestAnalysisTab/ContestAnalysis";
 
 type ContestName = "DCA" | "YCC";
 
@@ -19,12 +20,16 @@ const DesktopReport = () => {
   const currentTab = searchParams?.get("tab") || "공모전 분석";
 
   const [showVerifiedToast, setShowVerifiedToast] = useState(false);
+
   useEffect(() => {
     const verified = searchParams?.get("verified");
     if (verified === "1") {
       setShowVerifiedToast(true);
       const timeout = setTimeout(() => setShowVerifiedToast(false), 3000);
-      router.replace(`/reports/${workId}?tab=${currentTab}`);
+      setTimeout(() => {
+        router.replace(`/reports/${workId}?tab=${currentTab}`);
+      }, 0);
+
       return () => clearTimeout(timeout);
     }
   }, [searchParams, router, workId, currentTab]);
@@ -33,12 +38,6 @@ const DesktopReport = () => {
   const contestName = reportData?.result?.contestName as
     | ContestName
     | undefined;
-
-  useEffect(() => {
-    if (isAxiosError(error) && error.response?.status === 403) {
-      router.replace(`/reports/${workId}/verify-code`);
-    }
-  }, [error, router, workId]);
 
   const isYcc = reportData?.result?.contestName === "YCC";
   const tabs = isYcc
@@ -57,6 +56,12 @@ const DesktopReport = () => {
     router.push(`/reports/${workId}?tab=${tab}`, { scroll: false });
   };
 
+  useEffect(() => {
+    if (isAxiosError(error) && error.response?.status === 403) {
+      router.replace(`/reports/${workId}/verify-code`);
+    }
+  }, [error, router, workId]);
+  
   if (isLoading) {
     return (
       <div className="w-full">
@@ -76,17 +81,6 @@ const DesktopReport = () => {
               <div className="h-[400px] bg-gray-200 rounded animate-pulse"></div>
             </div>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    if (isAxiosError(error) && error.response?.status === 403) return null; // 리다이렉트 진행 중
-    return (
-      <div className="w-full">
-        <div className="text-red-500 text-center py-8">
-          리포트 정보를 불러오는데 실패했습니다.
         </div>
       </div>
     );

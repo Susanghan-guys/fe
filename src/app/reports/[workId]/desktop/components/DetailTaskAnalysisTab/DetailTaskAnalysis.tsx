@@ -13,15 +13,22 @@ interface DetailTaskAnalysisProps {
   hasFeedback: boolean;
 }
 
-function DetailTaskAnalysis({ contestName, workId, brand, workName, workMembers, hasFeedback }: DetailTaskAnalysisProps) {
+function DetailTaskAnalysis({
+  contestName,
+  workId,
+  brand,
+  workName,
+  workMembers,
+  hasFeedback,
+}: DetailTaskAnalysisProps) {
   return (
     <div>
-      <ReportHeader 
+      <ReportHeader
         workName={workName}
         contestName={contestName}
         brand={brand}
         workMembers={workMembers}
-        workId={workId} 
+        workId={workId}
         hasFeedback={hasFeedback}
       />
       <div className="w-full h-[1.2px] bg-gray-100 mt-[36px] mb-[52px]" />
@@ -38,7 +45,7 @@ function DetailTaskAnalysis({ contestName, workId, brand, workName, workMembers,
       <ReflectionConsistencySection workId={workId} />
 
       {/*  */}
-      <BriefAnalysisSection brandName={brand} />
+      <BriefAnalysisSection brandName={"SBI 저축은행 사이다뱅크"} />
     </div>
   );
 }

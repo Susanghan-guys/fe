@@ -1,5 +1,6 @@
 import React from "react";
 import SectionBlock from "../SectionBlock";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type Item = {
   id: number;
@@ -36,8 +37,9 @@ const BRAND_UNDERSTAND_ITEMS: Item[] = [
 ];
 
 const BrandUnderstand = () => {
+  const isMobile = useIsMobile();
   return (
-    <div className="mt-[108px] flex flex-col">
+    <div className={`${isMobile ? "mt-9" : "mt-[108px]"} flex flex-col`}>
       <SectionBlock
         heading="브랜드 이해도"
         description={`캠페인 아이디어가 주어진 예산, 기간, 매체, 실행 환경 등 현실적인 제약을 고려하여 실행 가능한 수준으로 설계되었으며,\n이를 통해 무엇이 바뀔 수 있는지에 대한 기대효과가 설득력 있게 제시되었는지를 평가함.`}

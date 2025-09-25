@@ -1,5 +1,6 @@
 import React from "react";
 import SectionBlock from "../SectionBlock";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type Item = {
   id: number;
@@ -36,8 +37,9 @@ const MEDIA_SELECTION_ITEMS: Item[] = [
 ];
 
 const MediaSelection = () => {
+  const isMobile = useIsMobile();
   return (
-    <div className="mt-[108px] flex flex-col">
+    <div className={`${isMobile ? "mt-9" : "mt-[108px]"} flex flex-col`}>
       <SectionBlock
         heading="매체 선정"
         description={` 캠페인의 핵심 메시지와 타겟 특성, 브랜드 전략을 바탕으로, 적절하고 전략적인 매체를 선정했으며,

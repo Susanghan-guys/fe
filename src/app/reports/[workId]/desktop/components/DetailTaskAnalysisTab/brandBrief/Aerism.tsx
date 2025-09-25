@@ -1,23 +1,43 @@
 import Tip from "../../Tip";
 import { BlueSpan } from "./BlueSpan";
 import DashList from "./DashList";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 function Aerism() {
+  const isMobile = useIsMobile();
   return (
     <div>
-      <div className="text-gray-900 font-T02-B mt-[108px] mb-[52px]">
+      <div
+        className={`text-gray-900 font-T02-B ${
+          isMobile ? "mt-[50px] mb-[52px]" : "mt-[108px] mb-[52px]"
+        }`}
+      >
         브리프 분석
       </div>
 
       <div>
         {/* 브랜드 소개 섹션 */}
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">브랜드 소개</div>
+        <div
+          className={`${
+            isMobile ? "px-[20px] py-[30px]" : "p-[30px]"
+          } border border-gray-200 rounded-[20px]`}
+        >
+          <div
+            className={`${
+              isMobile ? "font-B01-SB" : "font-T03-SB"
+            } text-gray-900 mb-[32px]`}
+          >
+            브랜드 소개
+          </div>
 
           <div className="space-y-[20px]">
             <div className="flex gap-[16px]">
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[12px]">
+                <div
+                  className={`${
+                    isMobile ? "font-B03-M" : "font-B01-M"
+                  } text-gray-800 mb-[12px]`}
+                >
                   <BlueSpan>
                     땀을 빠르게 흡수하고 건조하는 쾌적 테크놀로지 [에어리즘]
                   </BlueSpan>
@@ -26,7 +46,7 @@ function Aerism() {
                   <br />
                   <br />
                   초경량·초극세사 소재, 섬유 기술, 다양한 연령과 라이프스타일을
-                  아우르는 제품 라인업으로 전 세계적으로  
+                  아우르는 제품 라인업으로 전 세계적으로 &nbsp;
                   <BlueSpan>
                     쾌적함(Dry & Comfort) 이라는 새로운 기준을 제시
                   </BlueSpan>
@@ -56,13 +76,27 @@ function Aerism() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
+        <div
+          className={`flex flex-col ${isMobile ? "gap-[40px]" : "gap-[70px]"}`}
+        >
           {/* 브랜드 소개 팁 */}
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+          <div
+            className={`${
+              isMobile ? "px-[20px] py-[30px]" : "px-[30px] py-[34px]"
+            } bg-blue-50 rounded-[20px] mt-[14px]`}
+          >
+            <div
+              className={`flex gap-[16px] ${
+                isMobile ? "font-B01-SB" : "font-T03-SB"
+              } text-blue-main mb-[32px]`}
+            >
               <Tip /> 수상한 Tip
             </div>
-            <div className="font-B01-R text-gray-900">
+            <div
+              className={`${
+                isMobile ? "font-B02-M" : "font-B01-R"
+              } text-gray-900`}
+            >
               - 땀을 빠르게 흡수하고 건조하는 에어리즘, 쾌적함의 기준을 제시한
               유니클로의 대표 제품
               <br />
@@ -73,11 +107,25 @@ function Aerism() {
         </div>
 
         {/* 시장 상황 */}
-        <div className="mt-[70px]">
-          <div className="p-[30px] border border-gray-200 rounded-[20px]">
-            <div className="font-T03-SB text-gray-900 mb-[32px]">시장 상황</div>
+        <div className={`${isMobile ? "mt-[40px]" : "mt-[70px]"}`}>
+          <div
+            className={`${
+              isMobile ? "p-[20px]" : "p-[30px]"
+            } border border-gray-200 rounded-[20px]`}
+          >
+            <div
+              className={`${
+                isMobile ? "font-B01-SB" : "font-T03-SB"
+              } text-gray-900 mb-[32px]`}
+            >
+              시장 상황
+            </div>
 
-            <div className="space-y-[8px] font-B01-M">
+            <div
+              className={`space-y-[8px] ${
+                isMobile ? "font-B02-M" : "font-B01-M"
+              }`}
+            >
               <DashList>
                 에어리즘은 <BlueSpan>기능성 이너웨어 시장</BlueSpan>에서 기술력,
                 제품 다양성, 글로벌 인지도 측면에서 <BlueSpan>독보적 </BlueSpan>
@@ -87,19 +135,35 @@ function Aerism() {
 
               <DashList>
                 <BlueSpan>지구 온난화</BlueSpan>로 인해 쾌적 기능을 갖춘 의류에
-                대한
+                대한 &nbsp;
                 <BlueSpan>소비자 수요 꾸준히 증가 </BlueSpan>
                 예상
               </DashList>
             </div>
           </div>
 
-          <div className="flex flex-col gap-[70px]">
-            <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-              <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+          <div
+            className={`flex flex-col ${
+              isMobile ? "gap-[40px]" : "gap-[70px]"
+            }`}
+          >
+            <div
+              className={`${
+                isMobile ? "px-[20px] py-[24px]" : "px-[30px] py-[34px]"
+              } bg-blue-50 rounded-[20px] mt-[14px]`}
+            >
+              <div
+                className={`flex gap-[16px] ${
+                  isMobile ? "font-B01-SB" : "font-T03-SB"
+                } text-blue-main mb-[32px]`}
+              >
                 <Tip /> 수상한 Tip
               </div>
-              <div className="space-y-[8px] font-B01-R">
+              <div
+                className={`${
+                  isMobile ? "font-B02-M" : "font-B01-R"
+                } text-gray-900`}
+              >
                 - 기능성 이너웨어 시장에서의 독보적 인지도와 입지
                 <br />- 냉감 이너웨어에 대한 시장 경쟁 과열
                 <br />- 지구 온난화로 인해 소비자 수요 증가
@@ -115,13 +179,25 @@ function Aerism() {
         </div>
 
         {/* 브랜드 상황 및 커뮤니케이션 타깃 */}
-        <div className="mt-[70px]">
-          <div className="p-[30px] border border-gray-200 rounded-[20px]">
-            <div className="font-T03-SB text-gray-900 mb-[32px]">
+        <div className={`${isMobile ? "mt-[40px]" : "mt-[70px]"}`}>
+          <div
+            className={`${
+              isMobile ? "p-[20px]" : "p-[30px]"
+            } border border-gray-200 rounded-[20px]`}
+          >
+            <div
+              className={`${
+                isMobile ? "font-B01-SB" : "font-T03-SB"
+              } text-gray-900 mb-[32px]`}
+            >
               브랜드 상황 및 커뮤니케이션 타깃
             </div>
 
-            <div className="space-y-[20px] font-B01-M">
+            <div
+              className={`space-y-[20px] ${
+                isMobile ? "font-B02-M" : "font-B01-M"
+              }`}
+            >
               <DashList>
                 여름에 입는 시원한 소재’라는 인지가 강하지만, 에어리즘은 땀을
                 빨리 흡수하고 건조하는 드라이 기능과 매끄러운 감촉을 갖춰
@@ -146,12 +222,28 @@ function Aerism() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-[70px]">
-            <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-              <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+          <div
+            className={`flex flex-col ${
+              isMobile ? "gap-[40px]" : "gap-[70px]"
+            }`}
+          >
+            <div
+              className={`${
+                isMobile ? "px-[20px] py-[24px]" : "px-[30px] py-[34px]"
+              } bg-blue-50 rounded-[20px] mt-[14px]`}
+            >
+              <div
+                className={`flex gap-[16px] ${
+                  isMobile ? "font-B01-SB" : "font-T03-SB"
+                } text-blue-main mb-[32px]`}
+              >
                 <Tip /> 수상한 Tip
               </div>
-              <div className="flex gap-[3.5px] font-B01-R">
+              <div
+                className={`${
+                  isMobile ? "font-B02-M" : "font-B01-R"
+                } text-gray-900`}
+              >
                 - 여름에 입는 시원한 소재라는 인식, 하지만 모든 계절 입기 좋은
                 소재로 중장기적 연간상품으로 육성 필요
                 <br />- 커뮤니케이션은 2030에 집중
@@ -167,11 +259,25 @@ function Aerism() {
         </div>
 
         {/* 해결 과제 */}
-        <div className="mt-[70px]">
-          <div className="p-[30px] border border-gray-200 rounded-[20px]">
-            <div className="font-T03-SB text-gray-900 mb-[32px]">해결 과제</div>
+        <div className={`${isMobile ? "mt-[40px]" : "mt-[70px]"}`}>
+          <div
+            className={`${
+              isMobile ? "p-[20px]" : "p-[30px]"
+            } border border-gray-200 rounded-[20px]`}
+          >
+            <div
+              className={`${
+                isMobile ? "font-B01-SB" : "font-T03-SB"
+              } text-gray-900 mb-[32px]`}
+            >
+              해결 과제
+            </div>
 
-            <div className="space-y-[8px] font-B01-M">
+            <div
+              className={`space-y-[8px] ${
+                isMobile ? "font-B02-M" : "font-B01-M"
+              }`}
+            >
               <div>
                 <BlueSpan>
                   20대 고객을 에어리즘에 신규 유입시킬 수 있는 아이디어
@@ -191,12 +297,28 @@ function Aerism() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-[70px]">
-            <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-              <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+          <div
+            className={`flex flex-col ${
+              isMobile ? "gap-[40px]" : "gap-[70px]"
+            }`}
+          >
+            <div
+              className={`${
+                isMobile ? "px-[20px] py-[24px]" : "px-[30px] py-[34px]"
+              } bg-blue-50 rounded-[20px] mt-[14px]`}
+            >
+              <div
+                className={`flex gap-[16px] ${
+                  isMobile ? "font-B01-SB" : "font-T03-SB"
+                } text-blue-main mb-[32px]`}
+              >
                 <Tip /> 수상한 Tip
               </div>
-              <div className=" font-B01-R">
+              <div
+                className={`${
+                  isMobile ? "font-B02-M" : "font-B01-R"
+                } text-gray-900`}
+              >
                 - 20대 고객을 에어리즘에 신규 유입, 1년 내내 입기 좋은 데일리
                 솔루션 입지 강화, 소재 특성을 활용한 어필
                 <br />
@@ -208,13 +330,25 @@ function Aerism() {
         </div>
 
         {/* 유의 및 참고사항 */}
-        <div className="mt-[70px]">
-          <div className="p-[30px] border border-gray-200 rounded-[20px]">
-            <div className="font-T03-SB text-gray-900 mb-[32px]">
+        <div className={`${isMobile ? "mt-[40px]" : "mt-[70px]"}`}>
+          <div
+            className={`${
+              isMobile ? "p-[20px]" : "p-[30px]"
+            } border border-gray-200 rounded-[20px]`}
+          >
+            <div
+              className={`${
+                isMobile ? "font-B01-SB" : "font-T03-SB"
+              } text-gray-900 mb-[32px]`}
+            >
               유의 및 참고사항
             </div>
 
-            <div className="space-y-[8px] font-B01-M">
+            <div
+              className={`space-y-[8px] ${
+                isMobile ? "font-B02-M" : "font-B01-M"
+              }`}
+            >
               <DashList>
                 <BlueSpan>
                   {" "}
@@ -225,12 +359,24 @@ function Aerism() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-[70px]">
-            <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-              <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+          <div
+            className={`flex flex-col ${
+              isMobile ? "gap-[40px]" : "gap-[70px]"
+            }`}
+          >
+            <div
+              className={`${
+                isMobile ? "px-[20px] py-[24px]" : "px-[30px] py-[34px]"
+              } bg-blue-50 rounded-[20px] mt-[14px]`}
+            >
+              <div
+                className={`flex gap-[16px] ${
+                  isMobile ? "font-B01-SB" : "font-T03-SB"
+                } text-blue-main mb-[32px]`}
+              >
                 <Tip /> 수상한 Tip
               </div>
-              <div className=" font-B01-R">
+              <div className={`${isMobile ? "font-B02-M" : "font-B01-R"}`}>
                 - 이너웨어와 여름의 사용성에 대한 이미지 확대는 지양
                 <br />
                 <br />

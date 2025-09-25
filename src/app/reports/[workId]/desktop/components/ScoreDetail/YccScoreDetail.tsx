@@ -15,6 +15,7 @@ import {
   usePersonalWeakness,
 } from "@/hooks/queries";
 import { EvaluationType } from "@/app/_apis/schemas/reportResponse";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type ContestName = "DCA" | "YCC";
 
@@ -97,6 +98,7 @@ function YccScoreDetail({
 }: YccScoreDetailProps) {
   const types: EvaluationType[] = contestName === "DCA" ? DCA_TYPES : YCC_TYPES;
   const headings = contestName === "DCA" ? DCA_HEADINGS : YCC_HEADINGS;
+  const isMobile = useIsMobile();
 
   const {
     data: strengthsResponse,
@@ -140,19 +142,51 @@ function YccScoreDetail({
   return (
     <div className="flex flex-col items-start w-full">
       <div className="flex flex-row items-center">
-        <div className="text-gray-900 font-B01-M">{workName}</div>
-        <span className="mx-3 text-gray-300">|</span>
-        <div className="text-gray-700 font-B01-R">{contestName}</div>
+        <div
+          className={`text-gray-900 ${isMobile ? "font-T03-M" : "font-B01-M"}`}
+        >
+          {workName}
+        </div>
+
+        <span className={`text-gray-300 ${isMobile ? "mx-2" : "mx-3"}`}>|</span>
+
+        <div
+          className={`text-gray-700 ${isMobile ? "font-B03-R" : "font-B01-R"}`}
+        >
+          {contestName}
+        </div>
       </div>
 
-      <div className="text-gray-900 font-semibold text-4xl mt-4">
+      <div
+        className={`text-gray-900 ${
+          isMobile ? "font-T04-SB mt-2" : "font-semibold text-4xl mt-4"
+        }`}
+      >
         점수 상세보기
       </div>
-      <div className="w-full h-[1.2px] bg-gray-100 mt-[36px] mb-[52px]" />
 
-      <div className="flex py-6 px-9 flex-col items-start rounded-[12px] bg-gray-50 w-full gap-3 mb-10">
-        <div className="text-gray-800 font-T02-B">Tip</div>
-        <div className="text-gray-700 font-medium text-[20px]">
+      <div
+        className={`w-full bg-gray-100 ${
+          isMobile ? "h-px mt-[18px] mb-9" : "h-[1.2px] mt-9 mb-[52px]"
+        }`}
+      />
+
+      <div
+        className={`flex flex-col items-start rounded-[12px] bg-gray-50 w-full gap-3 ${
+          isMobile ? "p-6" : "mb-10 py-6 px-9"
+        }`}
+      >
+        <div
+          className={`text-gray-800 ${isMobile ? "font-B01-B" : "font-T02-B"}`}
+        >
+          Tip
+        </div>
+
+        <div
+          className={`text-gray-700 ${
+            isMobile ? "font-B02-M" : "font-medium text-[20px]"
+          }`}
+        >
           강점과 보완점은 작품 분석 메인 페이지에서 한눈에 보실 수 있습니다.
         </div>
       </div>

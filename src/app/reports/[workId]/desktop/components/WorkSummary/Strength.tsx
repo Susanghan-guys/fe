@@ -1,6 +1,7 @@
 "use client";
 import Loading from "@/components/common/Loading";
 import { usePersonalStrengths, usePersonalWeakness } from "@/hooks/queries";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { useState } from "react";
 
 type StrengthItem = {
@@ -15,6 +16,7 @@ type StrengthProps = { workId: number };
 const Strength = ({ workId }: StrengthProps) => {
   const [tab, setTab] = useState<"강점" | "보완점">("강점");
   const isWeak = tab === "보완점";
+  const isMobile = useIsMobile();
 
   const {
     data: strengthData,
@@ -45,10 +47,22 @@ const Strength = ({ workId }: StrengthProps) => {
       : [];
 
   return (
-    <div className="flex flex-col mt-[108px] items-start w-full mb-[219px]">
-      <div className="text-gray-900 font-T02-B">강점 및 보완점</div>
+    <div
+      className={`flex flex-col items-start w-full ${
+        isMobile ? "mt-9" : "mt-[108px]  mb-[219px]"
+      }`}
+    >
+      <div
+        className={`text-gray-900 ${isMobile ? "font-B01-B" : "font-T02-B"}`}
+      >
+        강점 및 보완점
+      </div>
 
-      <div className="mb-[29px] flex flex-row items-start gap-3 mt-[55px]">
+      <div
+        className={`flex flex-row items-start ${
+          isMobile ? "mt-6 mb-6 gap-2" : "gap-3 mt-[55px] mb-[29px]"
+        }`}
+      >
         {(["강점", "보완점"] as const).map((t) => {
           const isActive = tab === t;
           const isWeak = t === "보완점";
@@ -64,9 +78,11 @@ const Strength = ({ workId }: StrengthProps) => {
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={`relative rounded-[30px] px-[22px] py-[10px] items-center font-B01-M cursor-pointer ${
-                isActive ? activeClass : inactiveClass
-              }`}
+              className={`relative rounded-[30px]  items-center cursor-pointer ${
+                isMobile
+                  ? "font-B03-M px-[18px] py-2 "
+                  : "font-B01-M px-[22px] py-[10px] "
+              } ${isActive ? activeClass : inactiveClass}`}
             >
               {t}
             </button>
@@ -92,23 +108,39 @@ const Strength = ({ workId }: StrengthProps) => {
         {items.map((card) => (
           <div
             key={card.code}
-            className={`flex flex-col rounded-[10px] border bg-white pl-8 h-[325px] pr-[30px] pt-9 pb-[35px]  ${
-              isWeak ? "border-orange-point" : "border-blue-main"
-            }`}
+            className={`flex flex-col rounded-[10px] border bg-white  ${
+              isMobile
+                ? "h-[252px] p-[30px]"
+                : "h-[325px] pl-8 pr-[30px] pt-9 pb-[35px]"
+            } ${isWeak ? "border-orange-point" : "border-blue-main"}`}
           >
             <div
               className={`mb-2 ${
                 isWeak ? "text-orange-point" : "text-blue-main"
               }`}
             >
-              <span className="font-B01-B">{String(card.score).trim()}</span>
-              <span className="font-B01-R"> / 10점</span>
+              <span className={`${isMobile ? "font-B02-B" : "font-B01-B"}`}>
+                {String(card.score).trim()}
+              </span>
+              <span className={`${isMobile ? "font-B02-R" : "font-B01-R"}`}>
+                {" "}
+                / 10점
+              </span>
             </div>
 
-            <div className="mb-[23px] text-gray-900 font-T04-SB">
+            <div
+              className={`text-gray-900 ${
+                isMobile ? "font-B01-B mb-3" : " font-T04-SB mb-[23px]"
+              }`}
+            >
               {card.label}
             </div>
-            <p className="text-gray-500 font-B02-M text-justify text-ellipsis">
+
+            <p
+              className={`text-gray-500 text-justify text-ellipsis ${
+                isMobile ? "font-B03-M" : "font-B02-M"
+              }`}
+            >
               {card.description}
             </p>
           </div>

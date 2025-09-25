@@ -1,59 +1,61 @@
 import Tip from "../../Tip";
 import { BlueSpan } from "./BlueSpan";
 import DashList from "./DashList";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 function Tams() {
+  const isMobile = useIsMobile();
   return (
     <div>
-      <div className="text-gray-900 font-T02-B mt-[108px] mb-[52px]">
+      <div className={`text-gray-900 font-T02-B ${isMobile ? 'mt-[50px] mb-[52px]' : 'mt-[108px] mb-[52px]'}`}>
         브리프 분석
       </div>
       {/* 브랜드 소개 */}
       <div>
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">브랜드 소개</div>
+        <div className={`${isMobile ? 'px-[20px] py-[30px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>브랜드 소개</div>
 
           <div className="space-y-[20px]">
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 22년 4월
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[12px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[12px]`}>
                   국내{" "}
                   <BlueSpan>최초로 출시된 제로 칼로리 과일 탄산 음료</BlueSpan>
                   로 제로 탄산의 유행을 이끔
                 </div>
-                <div className="flex gap-1 font-B02-R text-gray-500 mt-[12px]">
+                <div className={`flex gap-1 ${isMobile ? 'font-B02-R' : 'font-B02-R'} text-gray-500 mt-[12px]`}>
                   <div>-</div>
                   <div>요즘 제일 탐나는 제로 컨셉으로 커뮤니케이션 진행</div>
                 </div>
               </div>
             </div>
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 25년 4월
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[12px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[12px]`}>
                   <BlueSpan> 제로가 아닌 제품으로도 확장</BlueSpan>하고자 리뉴얼
                   진행
                 </div>
-                <div className="flex gap-1 font-B02-R text-gray-500 mt-[12px]">
+                <div className={`flex gap-1 ${isMobile ? 'font-B02-R' : 'font-B02-R'} text-gray-500 mt-[12px]`}>
                   <div>-</div>
                   <div>
                     국내 소비자가 선호하는 오렌지, 포도, 사과, 파인애플 맛으로
                     재정비
                   </div>
                 </div>
-                <div className="flex gap-1 font-B02-R text-gray-500 mt-[12px]">
+                <div className={`flex gap-1 ${isMobile ? 'font-B02-R' : 'font-B02-R'} text-gray-500 mt-[12px]`}>
                   <div>-</div>
                   <div>
                     리뉴얼을 통해 기존 과일 향에 과즙을 더해 잘 익을 과일 맛과
                     풍부한 과일 향을 전달
                   </div>
                 </div>
-                <div className="flex gap-1 font-B02-R text-gray-500 mt-[12px]">
+                <div className={`flex gap-1 ${isMobile ? 'font-B02-R' : 'font-B02-R'} text-gray-500 mt-[12px]`}>
                   <div>-</div>
                   <div>
                     새롭게 등장한 탐스 쥬시 오렌지/포도와 업그레이드된 탐스 제로
@@ -63,16 +65,16 @@ function Tams() {
               </div>
             </div>
             <div className="flex gap-[16px]">
-              <div className="font-B01-M text-gray-500 min-w-[80px]">
+              <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-500 min-w-[80px]`}>
                 22년 4월
               </div>
               <div className="flex-1">
-                <div className="font-B01-M text-gray-800 mb-[12px]">
+                <div className={`${isMobile ? 'font-B02-M' : 'font-B01-M'} text-gray-800 mb-[12px]`}>
                   [잘 익은 탄산의 맛] 이라는 메세지로
                   <BlueSpan> 과즙감에 집중하는 커뮤니케이션</BlueSpan>
                   진행
                 </div>
-                <div className="flex gap-1 font-B02-R text-gray-500 mt-[12px]">
+                <div className={`flex gap-1 ${isMobile ? 'font-B02-R' : 'font-B02-R'} text-gray-500 mt-[12px]`}>
                   <div>-</div>
                   <div>
                     {" "}
@@ -84,12 +86,12 @@ function Tams() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="font-B01-R text-gray-900">
+            <div className={`${isMobile ? 'font-B02-M' : 'font-B01-R'} text-gray-900`}>
               - 국내 최초 제로 과일 탄산음료로 시장 선도
               <br />- 제로가 아닌 제품으로도 확장하고자 리뉴얼
               <br />- 과즙감에 집중하는 커뮤니케이션 진행
@@ -114,11 +116,11 @@ function Tams() {
       </div>
 
       {/* 시장 상황 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">시장 상황</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'p-[20px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>시장 상황</div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <div className="flex gap-[3.5px]">
               <div>-</div>
               <div>
@@ -137,9 +139,9 @@ function Tams() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
             <div className="flex gap-[3.5px]">
@@ -155,13 +157,13 @@ function Tams() {
       </div>
 
       {/* 브랜드 상황 및 커뮤니케이션 타깃 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'p-[20px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             브랜드 상황 및 커뮤니케이션 타깃
           </div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <div className="flex gap-[3.5px]">
               <div>-</div>
               <div>
@@ -176,9 +178,9 @@ function Tams() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
             <div className="flex gap-[3.5px]">
@@ -195,11 +197,11 @@ function Tams() {
       </div>
 
       {/* 해결 과제 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">해결 과제</div>
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'p-[20px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>해결 과제</div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <div className="flex gap-[3.5px]">
               <div>-</div>
               <div>
@@ -218,12 +220,12 @@ function Tams() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 경쟁사와 차별화된 리뉴얼 제품의 맛을 중심으로 타깃 주목도 높은
               디지털 캠페인 필수
               <br />
@@ -238,13 +240,13 @@ function Tams() {
       </div>
 
       {/* 유의 및 참고사항 */}
-      <div className="mt-[70px]">
-        <div className="p-[30px] border border-gray-200 rounded-[20px]">
-          <div className="font-T03-SB text-gray-900 mb-[32px]">
+      <div className={`${isMobile ? 'mt-[40px]' : 'mt-[70px]'}`}>
+        <div className={`${isMobile ? 'p-[20px]' : 'p-[30px]'} border border-gray-200 rounded-[20px]`}>
+          <div className={`${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-gray-900 mb-[32px]`}>
             유의 및 참고사항
           </div>
 
-          <div className="space-y-[8px] font-B01-M">
+          <div className={`space-y-[8px] ${isMobile ? 'font-B02-M' : 'font-B01-M'}`}>
             <div className="flex gap-[3.5px]">
               <div>-</div>
               <div>과즙이 다량 함유되었음으로 오인지 될 수 있는 문구 지양</div>
@@ -262,12 +264,12 @@ function Tams() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[70px]">
-          <div className="px-[30px] py-[34px] bg-blue-50 rounded-[20px] mt-[14px]">
-            <div className="flex gap-[16px] font-T03-SB text-blue-main mb-[32px]">
+        <div className={`flex flex-col ${isMobile ? 'gap-[40px]' : 'gap-[70px]'}`}>
+          <div className={`${isMobile ? 'px-[20px] py-[24px]' : 'px-[30px] py-[34px]'} bg-blue-50 rounded-[20px] mt-[14px]`}>
+            <div className={`flex gap-[16px] ${isMobile ? 'font-B01-SB' : 'font-T03-SB'} text-blue-main mb-[32px]`}>
               <Tip /> 수상한 Tip
             </div>
-            <div className="flex gap-[3.5px] font-B01-R">
+            <div className={`flex gap-[3.5px] ${isMobile ? 'font-B02-M' : 'font-B01-R'}`}>
               - 과즙이 다량 함유되었음으로 오인지 될 수 있는 무구 지양, ‘주스’
               표현 사용 불가, ‘탐스’브랜드를 메인으로 진행
               <br />

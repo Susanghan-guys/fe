@@ -7,12 +7,14 @@ import LotteRia from "./brandBrief/LotteRia";
 import NexenTire from "./brandBrief/NexenTire";
 import SBIBank from "./brandBrief/SBIBank";
 import Krush from "./brandBrief/Krush";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface BriefAnalysisSectionProps {
   brandName: string;
 }
 
 function BriefAnalysisSection({ brandName }: BriefAnalysisSectionProps) {
+  const isMobile = useIsMobile();
   // 브랜드별 컴포넌트 매핑
   const brandComponents = {
     빼빼로: BBaBBaro,
@@ -37,10 +39,20 @@ function BriefAnalysisSection({ brandName }: BriefAnalysisSectionProps) {
 
   return (
     <div>
-      <div className="text-gray-900 font-T02-B mt-[108px] mb-[52px]">
+      <div
+        className={`text-gray-900  ${
+          isMobile
+            ? "mt-[50px] mb-[52px] font-T04-SB"
+            : "mt-[108px] mb-[52px] font-T02-B"
+        }`}
+      >
         브리프 분석
       </div>
-      <div className="p-[30px] border border-gray-200 rounded-[20px]">
+      <div
+        className={`${
+          isMobile ? "p-[20px]" : "p-[30px]"
+        } border border-gray-200 rounded-[20px]`}
+      >
         <div className="font-T03-SB text-gray-900 mb-[32px]">브랜드 정보</div>
         <div className="font-B01-M text-gray-800">
           {brandName} 브랜드에 대한 분석 정보를 준비 중입니다.

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   WorkAllEvaluationResponse,
@@ -5,6 +6,7 @@ import {
 } from "@/app/_apis/schemas/reportResponse";
 import { useWorkAllEvaluation, useWorkYccEvaluation } from "@/hooks/queries";
 import Loading from "@/components/common/Loading";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type Item = { subject: string; value: number; description: string };
 type ContestName = "DCA" | "YCC";
@@ -15,19 +17,21 @@ type AllEvalutionProps = {
 };
 
 const AllEvalution = ({ workId, contestName }: AllEvalutionProps) => {
+  const isMobile = useIsMobile();
   const isDCA = contestName === "DCA";
 
   const dca = useWorkAllEvaluation(workId, { enabled: isDCA });
   const ycc = useWorkYccEvaluation(workId, { enabled: !isDCA });
 
-  if ((isDCA ? dca : ycc).isLoading) {
+  const active = isDCA ? dca : ycc;
+  if (active.isLoading) {
     return (
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center">
         <Loading />
       </div>
     );
   }
-  if ((isDCA ? dca : ycc).isError) {
+  if (active.isError) {
     return <div className="text-center text-red-500">에러가 발생했습니다.</div>;
   }
 
@@ -100,16 +104,38 @@ const AllEvalution = ({ workId, contestName }: AllEvalutionProps) => {
       ];
 
   return (
-    <div className="w-full flex flex-col items-start gap-12">
+    <div
+      className={`w-full flex flex-col items-start ${
+        isMobile ? "gap-6" : "gap-12"
+      }`}
+    >
       {items.map((item) => (
         <div key={item.subject}>
-          <div className="flex items-center gap-[10px]">
-            <div className="inline-flex items-center justify-center rounded-[8px] w-[45px] bg-blue-50 text-blue-main h-[33px] px-3 py-[6px] text-[14px] font-medium leading-none">
+          <div className="flex items-center gap-2 sm:gap-[10px]">
+            <div
+              className={`inline-flex items-center justify-center rounded-[8px] 
+                ${
+                  isMobile
+                    ? "w-[32px] h-[26px] font-C01-M"
+                    : "w-[45px] h-[33px] text-[14px]"
+                } 
+                bg-blue-50 text-blue-main font-medium leading-none`}
+            >
               {item.value.toFixed(1)}
             </div>
-            <div className="text-gray-800 font-T04-SB">{item.subject}</div>
+            <div
+              className={`text-gray-800 ${
+                isMobile ? "font-B02-SB" : "font-T04-SB"
+              }`}
+            >
+              {item.subject}
+            </div>
           </div>
-          <p className="mt-[14px] font-B01-M text-gray-800">
+          <p
+            className={`mt-[14px] text-gray-800 ${
+              isMobile ? "font-B03-M" : "font-B01-M"
+            }`}
+          >
             {item.description}
           </p>
         </div>

@@ -1,4 +1,6 @@
+"use client";
 import React from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface CapabilityItemProps {
   title: string;
@@ -11,16 +13,36 @@ function CapabilityItem({
   description,
   isLast = false,
 }: CapabilityItemProps) {
+  const isMobile = useIsMobile();
+
   return (
     <div>
-      <h3 className="font-T03-SB text-blue-main mb-3">{title}</h3>
-      <p className="font-B01-R text-gray-800">{description}</p>
-      {!isLast && <div className="border-t border-[#ececec] my-9"></div>}
+      <h3
+        className={`text-blue-main mb-3 ${
+          isMobile ? "font-B01-SB" : "font-T03-SB"
+        }`}
+      >
+        {title}
+      </h3>
+      <p
+        className={`text-gray-800 ${
+          isMobile ? "font-B03-R leading-relaxed" : "font-B01-R"
+        }`}
+      >
+        {description}
+      </p>
+      {!isLast && (
+        <div
+          className={`border-t border-[#ececec] ${isMobile ? "my-9" : "my-9"}`}
+        />
+      )}
     </div>
   );
 }
 
 function ContestCapability({ contest }: { contest: string }) {
+  const isMobile = useIsMobile();
+
   const DCA_capabilities = [
     {
       title: "브리프 해석능력",
@@ -41,42 +63,39 @@ function ContestCapability({ contest }: { contest: string }) {
 
   const YCC_capabilities = [
     {
-        title: "열린 주제",
-        description:
-          "명확한 RFP 없이 포괄적인 주제를 갖고 있어요. 때문에, 구체적이고 명확하면서, 사람들이 공감할 수 있는 아젠다를 선정하는 것이 중요해요!",
-      },
-      {
-        title: "매체 활용의 창의성",
-        description:
-          "YCC는 후보작을 대상으로 실제 멘토가 붙어 집행까지 이루어지는 공모전이에요. 때문에 대학생 수준에서 구현가능한 규모와 현실성을 고려해야해요.",
-      },
-      {
-        title: "개념의 전환",
-        description:
-          "YCC는 아이디어를 바탕으로 실제 캠페인 진행이 이루어지기 때문에, 사람들의 인지와 자연스러운 참여를 유도하는 확산 전략의 구체적이고 현실적인 설계가 중요해요!",
-      },
+      title: "열린 주제",
+      description:
+        "명확한 RFP 없이 포괄적인 주제를 갖고 있어요. 때문에, 구체적이고 명확하면서, 사람들이 공감할 수 있는 아젠다를 선정하는 것이 중요해요!",
+    },
+    {
+      title: "매체 활용의 창의성",
+      description:
+        "YCC는 후보작을 대상으로 실제 멘토가 붙어 집행까지 이루어지는 공모전이에요. 때문에 대학생 수준에서 구현가능한 규모와 현실성을 고려해야해요.",
+    },
+    {
+      title: "개념의 전환",
+      description:
+        "YCC는 아이디어를 바탕으로 실제 캠페인 진행이 이루어지기 때문에, 사람들의 인지와 자연스러운 참여를 유도하는 확산 전략의 구체적이고 현실적인 설계가 중요해요!",
+    },
   ];
 
   return (
-    <div className="bg-white rounded-lg w-[453px]">
+    <div
+      className={`bg-white rounded-lg ${
+        isMobile ? "w-full py-9" : "w-[453px] px-6 py-8"
+      }`}
+    >
       <div className="space-y-0">
-        {contest === "DCA"
-          ? DCA_capabilities.map((capability, index) => (
-              <CapabilityItem
-                key={index}
-                title={capability.title}
-                description={capability.description}
-                isLast={index === DCA_capabilities.length - 1}
-              />
-            ))
-          : YCC_capabilities.map((capability, index) => (
-              <CapabilityItem
-                key={index}
-                title={capability.title}
-                description={capability.description}
-                isLast={index === YCC_capabilities.length - 1}
-              />
-            ))}
+        {(contest === "DCA" ? DCA_capabilities : YCC_capabilities).map(
+          (capability, index, arr) => (
+            <CapabilityItem
+              key={index}
+              title={capability.title}
+              description={capability.description}
+              isLast={index === arr.length - 1}
+            />
+          )
+        )}
       </div>
     </div>
   );
