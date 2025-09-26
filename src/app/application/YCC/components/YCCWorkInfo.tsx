@@ -2,11 +2,13 @@
 import TextInput from "@/components/common/TextInput";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useSubmitStore } from "@/store/useSubmitStore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const YCCWorkInfo = () => {
   const [title, setTitle] = useState("");
   const isMobile = useIsMobile();
+  const titleEventSent = useRef(false);
 
   const setYccWorkInfoFilled = useSubmitStore(
     (state) => state.setYccWorkInfoFilled
@@ -38,6 +40,17 @@ const YCCWorkInfo = () => {
           placeholder="작품의 제목을 입력하세요."
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          onFocus={() => {
+            titleEventSent.current = false;
+          }}
+          onBlur={() => {
+            if (title.trim() && !titleEventSent.current) {
+              trackGAEvent(GA_EVENT.InputTitleYcc, {
+                screen: "AP"
+              });
+              titleEventSent.current = true;
+            }
+          }}
           className="w-full"
         />
       </div>

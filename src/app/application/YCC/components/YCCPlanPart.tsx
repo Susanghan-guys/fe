@@ -3,6 +3,7 @@ import React from "react";
 import FileDropBox from "@/components/common/FileDropBox";
 import { useSubmitStore } from "@/store/useSubmitStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const YCCPlanPart = () => {
   const setYccBriefUploaded = useSubmitStore((s) => s.setYccBriefUploaded);
@@ -12,6 +13,13 @@ const YCCPlanPart = () => {
   const handleFileChange = (planFile: File | null) => {
     setYccBriefFile(planFile);
     setYccBriefUploaded(!!planFile);
+    
+    // GA 이벤트: 기획서 제출
+    if (planFile) {
+      trackGAEvent(GA_EVENT.InputDocYcc, {
+        screen: "AP"
+      });
+    }
   };
 
   return (

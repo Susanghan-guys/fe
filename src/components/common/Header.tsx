@@ -92,6 +92,11 @@ function Header({ theme }: HeaderProps) {
 
     const isMovingToAnotherPage = pathname !== href;
 
+    // 홈에서 다른 페이지로 이동할 때는 isWriting 상태 초기화
+    if (pathname === "/home" || pathname === "/") {
+      setIsWriting(false);
+    }
+
     if (isInApplicationDetailPage && isWriting && isMovingToAnotherPage) {
       pendingHrefRef.current = href;
       setShowConfirm(true);

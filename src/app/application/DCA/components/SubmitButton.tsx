@@ -59,14 +59,14 @@ const SubmitButton = ({ mode }: SubmitButtonProps) => {
     if (isSubmitting) return;
     setIsSubmitting(true);
 
-    // DCA/YCC 신청하기 버튼 클릭 이벤트
+    // DCA/YCC 제출하기 버튼 클릭 이벤트
     if (mode === "dca") {
-      trackGAEvent(GA_EVENT.ClickDcaApply, {
-        screen: "HM"
+      trackGAEvent(GA_EVENT.ClickSubmitDca, {
+        screen: "AP"
       });
     } else if (mode === "ycc") {
-      trackGAEvent(GA_EVENT.ClickYccApply, {
-        screen: "HM"
+      trackGAEvent(GA_EVENT.ClickSubmitYcc, {
+        screen: "AP"
       });
     }
 

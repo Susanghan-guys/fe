@@ -4,6 +4,7 @@ import FeedbackModal from "./FeedbackModal";
 import ShareModal from "./ShareModal";
 import { useSubmitFeedback, useShareReport } from "@/hooks/queries";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 interface ReportHeaderProps {
   workName: string;
@@ -32,7 +33,18 @@ const ReportHeader: React.FC<ReportHeaderProps> = ({
   const submitFeedbackMutation = useSubmitFeedback();
   const shareReportMutation = useShareReport();
 
-  const handleOpenFeedbackModal = () => setIsFeedbackModalOpen(true);
+  const handleOpenFeedbackModal = () => {
+    // GA 이벤트: 피드백 버튼 클릭
+    trackGAEvent(GA_EVENT.ClickFeedback, {
+      report_title: workName,
+      contest_name: contestName,
+      teammate_count: workMembers?.length || 0,
+      teammate_names: workMembers?.join(", ") || "",
+      brand_name: brand || "",
+      screen: "RP"
+    });
+    setIsFeedbackModalOpen(true);
+  };
   const handleCloseFeedbackModal = () => setIsFeedbackModalOpen(false);
 
   const handleSubmitFeedback = (rating: number, review: string) => {
