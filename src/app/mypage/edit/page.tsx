@@ -8,7 +8,6 @@ import ButtonBase from "@/components/common/ButtonBase";
 import { useUserMe, useUpdateUserProfile } from "@/hooks/queries/useUser";
 import GrayButton from "@/components/common/GrayButton";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 export default function ProfileEditPage() {
   const router = useRouter();
