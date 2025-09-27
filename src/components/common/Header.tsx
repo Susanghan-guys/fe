@@ -9,6 +9,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import { useSubmitStore } from "@/store/useSubmitStore";
 import ConfirmModal from "@/components/common/ConfirmModal";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 interface HeaderProps {
   theme?: "dark" | "light";
@@ -72,11 +73,29 @@ function Header({ theme }: HeaderProps) {
   };
 
   const handleProtectedNavigation = (href: string) => {
+    // 내 리포트 버튼 클릭 이벤트
+    if (href === "/reports") {
+      trackGAEvent(GA_EVENT.ClickMyReport, {
+        screen: "HM"
+      });
+    }
+
+    if (href === "/application") {
+      trackGAEvent(GA_EVENT.ClickApply, {
+        screen: "HM"
+      });
+    }
+
     const isInApplicationDetailPage =
       pathname.startsWith("/application/DCA") ||
       pathname.startsWith("/application/YCC");
 
     const isMovingToAnotherPage = pathname !== href;
+
+    // 홈에서 다른 페이지로 이동할 때는 isWriting 상태 초기화
+    if (pathname === "/home" || pathname === "/") {
+      setIsWriting(false);
+    }
 
     if (isInApplicationDetailPage && isWriting && isMovingToAnotherPage) {
       pendingHrefRef.current = href;
@@ -171,7 +190,14 @@ function Header({ theme }: HeaderProps) {
                     src={profile?.profileImage || "/default-profile.png"}
                     alt="프로필"
                     className="w-[38px] h-[38px] rounded-full object-cover cursor-pointer"
-                    onClick={() => setDropdownOpen((v) => !v)}
+                    onClick={() => {
+                      trackGAEvent(GA_EVENT.ClickProfile, {
+                        button_state: "로그인_후",
+                        prev_page_url: pathname,
+                        screen: "HM"
+                      });
+                      setDropdownOpen((v) => !v);
+                    }}
                   />
                 )}
                 {dropdownOpen && !isMobile && (
@@ -191,7 +217,14 @@ function Header({ theme }: HeaderProps) {
                       ? "text-gray-200 hover:text-white"
                       : "text-gray-500 hover:text-gray-900"
                   )}
-                  onClick={() => handleProtectedNavigation("/login")}
+                  onClick={() => {
+                    trackGAEvent(GA_EVENT.ClickProfile, {
+                      button_state: "로그인_전",
+                      prev_page_url: pathname,
+                      screen: "HM"
+                    });
+                    handleProtectedNavigation("/login");
+                  }}
                 >
                   로그인
                 </div>
@@ -248,10 +281,15 @@ function Header({ theme }: HeaderProps) {
                   <>
                     <div
                       className="flex items-center gap-3 mt-4 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors"
-                      onClick={() => {
-                        handleProtectedNavigation("/mypage");
-                        setMenuOpen(false);
-                      }}
+                    onClick={() => {
+                      trackGAEvent(GA_EVENT.ClickProfile, {
+                        button_state: "로그인_후",
+                        prev_page_url: pathname,
+                        screen: "HM"
+                      });
+                      handleProtectedNavigation("/mypage");
+                      setMenuOpen(false);
+                    }}
                     >
                       <img
                         src={profile?.profileImage || "/default-profile.png"}
@@ -276,6 +314,11 @@ function Header({ theme }: HeaderProps) {
                   <div
                     className="text-gray-800 font-B02-M mt-4 cursor-pointer"
                     onClick={() => {
+                      trackGAEvent(GA_EVENT.ClickProfile, {
+                        button_state: "로그인_전",
+                        prev_page_url: pathname,
+                        screen: "HM"
+                      });
                       handleProtectedNavigation("/login");
                       setMenuOpen(false);
                     }}

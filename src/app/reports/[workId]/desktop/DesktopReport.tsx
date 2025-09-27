@@ -7,6 +7,7 @@ import DetailTaskAnalysis from "./components/DetailTaskAnalysisTab/DetailTaskAna
 import WorkEvaluation from "./components/WorkSummary/WorkEvaluation";
 import { isAxiosError } from "axios";
 import ContestAnalysis from "./components/ContestAnalysisTab/ContestAnalysis";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 type ContestName = "DCA" | "YCC";
 
@@ -61,7 +62,7 @@ const DesktopReport = () => {
       router.replace(`/reports/${workId}/verify-code`);
     }
   }, [error, router, workId]);
-  
+
   if (isLoading) {
     return (
       <div className="w-full">

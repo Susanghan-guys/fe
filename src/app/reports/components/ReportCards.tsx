@@ -4,6 +4,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import DeleteConfirmModal from "./DeleteConfirmModal";
 import { useRouter } from "next/navigation";
 import { useDeleteReportVisibility } from "@/hooks/queries";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 export interface ReportCardProps {
   type: string;
@@ -14,6 +15,9 @@ export interface ReportCardProps {
   onDelete?: () => void;
   workId: number;
   isDeletable?: boolean;
+  contestName?: string;
+  teammateNames?: string[];
+  brandName?: string;
 }
 
 const ReportCard = ({
@@ -25,6 +29,9 @@ const ReportCard = ({
   onDelete,
   workId,
   isDeletable,
+  contestName,
+  teammateNames,
+  brandName,
 }: ReportCardProps) => {
   const isMobile = useIsMobile();
   const router = useRouter();
@@ -44,6 +51,16 @@ const ReportCard = ({
   };
 
   const handleDeleteConfirm = () => {
+    // GA 이벤트: 리포트 삭제
+    trackGAEvent(GA_EVENT.DeleteReport, {
+      report_title: title,
+      contest_name: contestName || type,
+      teammate_count: teammateNames?.length || 0,
+      teammate_names: teammateNames?.join(", ") || "",
+      brand_name: brandName || "",
+      screen: "RP"
+    });
+
     if (onDelete) {
       onDelete();
       return;

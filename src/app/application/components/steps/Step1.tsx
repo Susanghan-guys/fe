@@ -37,7 +37,7 @@ export function Step1({
             <AP02 />
           </div>
         </StepLayout>
-        <StepNavigation onNext={onNext} onPrev={onPrev} />
+        <StepNavigation onNext={onNext} onPrev={onPrev} stepNumber={stepNumber} />
       </AuthGuard>
     </div>
   );

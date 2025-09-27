@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Google, KaKao, Naver } from "../../../public";
 import ToolTip from "./_components/Tooltip";
 import Header from "@/components/common/Header";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -31,6 +32,9 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#FEE500] cursor-pointer"
             onClick={() => {
+              trackGAEvent(GA_EVENT.LoginKakao, {
+                screen: "LO"
+              });
               window.location.href = `${BACKEND_URL}/oauth2/authorization/kakao`;
             }}
           >
@@ -54,6 +58,9 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#FFF] border border-[#E7E7E7] cursor-pointer"
             onClick={() => {
+              trackGAEvent(GA_EVENT.LoginGoogle, {
+                screen: "LO"
+              });
               window.location.href = `${BACKEND_URL}/oauth2/authorization/google`;
             }}
           >
@@ -77,6 +84,9 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#03C75A] cursor-pointer"
             onClick={() => {
+              trackGAEvent(GA_EVENT.LoginNaver, {
+                screen: "LO"
+              });
               window.location.href = `${BACKEND_URL}/oauth2/authorization/naver`;
             }}
           >

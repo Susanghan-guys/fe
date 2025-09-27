@@ -10,7 +10,7 @@ function CustomFeedbackSection() {
         내 출품작에 딱 맞춘 AI 피드백 제공
       </div>
       <div className="text-gray-600 font-T02-SB mt-3 sm:mt-[21px] text-sm sm:text-base text-center">
-        OO 기술 활용으로 개인화된 피드백 및 개선점 도출
+        현 서울시 브랜드 홍보 위원
       </div>
 
       <div className="mt-8 sm:mt-[101px] flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-[31px] w-full">

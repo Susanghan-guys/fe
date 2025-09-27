@@ -6,6 +6,7 @@ import ConfirmModal from "@/components/common/ConfirmModal";
 import ApplyComfirmModal from "@/components/common/ApplyCompleteModal";
 import { DCAapply, YCCApply } from "@/app/_apis/apply";
 import { DCAapplyRequest } from "@/app/_apis/schemas";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 interface SubmitButtonProps {
   mode: "dca" | "ycc";
@@ -57,6 +58,17 @@ const SubmitButton = ({ mode }: SubmitButtonProps) => {
   const handleConfirm = async () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
+
+    // DCA/YCC 제출하기 버튼 클릭 이벤트
+    if (mode === "dca") {
+      trackGAEvent(GA_EVENT.ClickSubmitDca, {
+        screen: "AP"
+      });
+    } else if (mode === "ycc") {
+      trackGAEvent(GA_EVENT.ClickSubmitYcc, {
+        screen: "AP"
+      });
+    }
 
     if (mode === "dca") {
       if (!briefBoardFile) {

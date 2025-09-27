@@ -3,6 +3,7 @@ import React from "react";
 import { useSubmitStore } from "@/store/useSubmitStore";
 import FileDropBox from "@/components/common/FileDropBox";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const BriefBoard = () => {
   const setBriefUploaded = useSubmitStore((s) => s.setBriefUploaded);
@@ -12,6 +13,14 @@ const BriefBoard = () => {
   const handleFileChange = (uploadedFile: File | null) => {
     setBriefBoardFile(uploadedFile);
     setBriefUploaded(!!uploadedFile);
+    
+    // GA 이벤트: 브리프보드 제출
+    if (uploadedFile) {
+      trackGAEvent(GA_EVENT.SubmitBriefboardDca, {
+        error_count: 0, // TODO: 실제 오류 횟수 추적 필요
+        screen: "AP"
+      });
+    }
   };
 
   return (

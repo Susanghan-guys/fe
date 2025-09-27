@@ -129,7 +129,7 @@ function ContributorSection() {
               <div className="mt-4 sm:mt-10 text-gray-600 font-B01-M text-xs sm:text-base">
                 <div className="flex gap-2 sm:gap-[14px] truncate">
                   <span>-</span>
-                  <span>브랜드 PR 20년, 클라이언트 OO여개</span>
+                  <span>브랜드 PR 20년, 클라이언트 200여개</span>
                 </div>
                 <div className="flex gap-2 sm:gap-[14px]">
                   <span>-</span>

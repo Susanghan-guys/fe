@@ -3,6 +3,7 @@ import React from "react";
 import FileDropBox from "@/components/common/FileDropBox";
 import { useSubmitStore } from "@/store/useSubmitStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const PlanPart = () => {
   const setadditionalFile = useSubmitStore((s) => s.setadditionalFile);
@@ -10,6 +11,13 @@ const PlanPart = () => {
 
   const handleFileChange = (uploadedFile: File | null) => {
     setadditionalFile(uploadedFile);
+    
+    // GA 이벤트: 기획서 제출
+    if (uploadedFile) {
+      trackGAEvent(GA_EVENT.InputDocDca, {
+        screen: "AP"
+      });
+    }
   };
 
   return (
