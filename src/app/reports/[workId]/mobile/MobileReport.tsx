@@ -6,7 +6,6 @@ import { isAxiosError } from "axios";
 import ContestAnalysis from "../desktop/components/ContestAnalysisTab/ContestAnalysis";
 import DetailTaskAnalysis from "../desktop/components/DetailTaskAnalysisTab/DetailTaskAnalysis";
 import WorkEvaluation from "../desktop/components/WorkSummary/WorkEvaluation";
-import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 type ContestName = "DCA" | "YCC";
 

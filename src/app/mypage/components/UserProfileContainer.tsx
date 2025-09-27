@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Suspense, useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useUserMe } from "@/hooks/queries/useUser";
 import UserProfilePresentor from "./UserProfilePresentor";
 import UserProfileSkeleton from "@/components/common/UserProfileSkeleton";
@@ -22,7 +22,6 @@ interface ApiError {
 // 실제 데이터를 가져오는 컴포넌트
 function UserProfileData({ className }: { className: string }) {
   const router = useRouter();
-  const pathname = usePathname();
   const { data: userData, error, isLoading } = useUserMe();
   const [mounted, setMounted] = useState(false);
 
