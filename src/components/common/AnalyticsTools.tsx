@@ -1,9 +1,9 @@
-"use client";
-
 import Script from "next/script";
 
 export default function AnalyticsTools() {
-  if (process.env.NODE_ENV !== "production") {
+  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
+
+  if (!gaId) {
     return null;
   }
 
@@ -11,7 +11,7 @@ export default function AnalyticsTools() {
     <>
       {/* Google Analytics */}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-MSJZZZEEW7"
+        src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -19,10 +19,14 @@ export default function AnalyticsTools() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-MSJZZZEEW7');
+          gtag('config', '${gaId}', {
+            debug_mode: ${
+              process.env.NODE_ENV === "development" ? "true" : "false"
+            }
+          });
         `}
       </Script>
-      
+
       {/* Microsoft Clarity */}
       <Script id="microsoft-clarity" strategy="afterInteractive">
         {`

@@ -50,6 +50,7 @@ export function Step3({
               router.push("/application/YCC");
             }
           }}
+          stepNumber={stepNumber}
         />
       </AuthGuard>
     </div>

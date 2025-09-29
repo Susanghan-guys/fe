@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { cn } from "@/utils/cn";
 import CloseIcon from "../../../../../../public/icons/CloseIcon";
 import ButtonBase from "@/components/common/ButtonBase";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 interface FeedbackModalProps {
   isOpen: boolean;
@@ -53,7 +54,14 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
             {[1, 2, 3, 4, 5].map((score) => (
               <button
                 key={score}
-                onClick={() => setRating(score)}
+                onClick={() => {
+                  setRating(score);
+                  // GA 이벤트: 서비스 만족도 조사 점수 선택
+                  trackGAEvent(GA_EVENT.SelectRating, {
+                    rating: score,
+                    screen: "RP"
+                  });
+                }}
                 className={cn(
                   "flex h-10 w-10 items-center justify-center rounded-full border text-sm font-medium transition-colors cursor-pointer",
                   rating === score

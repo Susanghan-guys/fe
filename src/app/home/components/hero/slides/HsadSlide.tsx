@@ -1,13 +1,18 @@
 "use client";
 import RoundButton from "@/components/common/RoundButton";
 import { useRouter } from "next/navigation";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 function HsadSlide() {
   const router = useRouter();
 
   const handleapplicationClick = () => {
+    trackGAEvent(GA_EVENT.ClickYccApply, {
+      screen: "HM",
+    });
     router.push("/application");
   };
+
   return (
     <div
       className="w-full min-h-[400px] h-screen flex flex-col items-center justify-center bg-no-repeat bg-cover bg-center relative"

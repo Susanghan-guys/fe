@@ -6,6 +6,7 @@ import ReportIcon from "../../../../../public/icons/ReportIcon";
 import { useAuth } from "@/hooks/queries/useAuth";
 import { LoginModal } from "@/components/common/LoginModal";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 type ContestSelectionStepProps = {
   selectedContest?: "daehong" | "hsad";
@@ -27,6 +28,17 @@ export function ContestSelectionStep({
     if (!isLoggedIn) {
       setShowLoginModal(true);
       return;
+    }
+
+    // GA 이벤트 전송
+    if (contest === "daehong") {
+      trackGAEvent(GA_EVENT.ApplySelectDca, {
+        screen: "AP"
+      });
+    } else if (contest === "hsad") {
+      trackGAEvent(GA_EVENT.ApplySelectYcc, {
+        screen: "AP"
+      });
     }
 
     setSelected(contest);

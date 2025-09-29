@@ -61,7 +61,7 @@ const DesktopReport = () => {
       router.replace(`/reports/${workId}/verify-code`);
     }
   }, [error, router, workId]);
-  
+
   if (isLoading) {
     return (
       <div className="w-full">

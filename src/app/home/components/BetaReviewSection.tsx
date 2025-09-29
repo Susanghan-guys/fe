@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LeftArrow, RightArrow, Star } from "../../../../public";
 import StarNoFIll from "../../../../public/icons/StarNoFIll";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const reviewData = [
   {
@@ -33,10 +34,16 @@ function BetaReviewSection() {
   const [currentIndex, setCurrentIndex] = useState(1);
 
   const handlePrev = () => {
+    trackGAEvent(GA_EVENT.ViewReviews, {
+      screen: "HM",
+    });
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
   const handleNext = () => {
+    trackGAEvent(GA_EVENT.ViewReviews, {
+      screen: "HM",
+    });
     setCurrentIndex((prev) => Math.min(prev + 1, reviewData.length - 1));
   };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import DivisionLine from "./DivisionLine";
 import { SettingsLinkItem } from "./SettingItem";
 import UserProfileContainer from "./UserProfileContainer";
@@ -8,22 +9,33 @@ import GrayIconChevronRight from "../../../../public/icons/GrayIconChevronRight"
 import CornerIcon from "../../../../public/icons/CornerIcon";
 import { useLogout } from "@/hooks/queries/useAuth";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 function UserProfilePanel() {
   const isMobile = useIsMobile();
+  const pathname = usePathname();
   const logoutMutation = useLogout();
 
   const labelFontClass = isMobile ? "font-B02-M" : "font-B01-M";
 
   const handleInquiry = () => {
+    trackGAEvent(GA_EVENT.ClickInquiry, {
+      screen: "PF"
+    });
     window.open("https://forms.gle/cSKrGxDtF3aYAnv56", "_blank");
   };
 
   const handlePrivacyPolicy = () => {
+    trackGAEvent(GA_EVENT.ViewPrivacyPolicy, {
+      screen: "PF"
+    });
     window.open("https://soosanghanprivacy.notion.site/?pvs=143", "_blank");
   };
 
   const handleTermsOfService = () => {
+    trackGAEvent(GA_EVENT.ViewTermsPolicy, {
+      screen: "PF"
+    });
     window.open(
       "https://soosanghantermsofuse.notion.site/?source=copy_link",
       "_blank"
@@ -32,6 +44,10 @@ function UserProfilePanel() {
 
   const handleLogout = async () => {
     try {
+      trackGAEvent(GA_EVENT.ClickLogout, {
+        prev_page_url: pathname,
+        screen: "PF"
+      });
       await logoutMutation.mutateAsync();
       // 로그아웃 성공 시 홈으로 이동
       window.location.href = "/home";
@@ -94,7 +110,15 @@ function UserProfilePanel() {
         rightContent={<LogoutIcon />}
         onClick={handleLogout}
       />
-      <Link href="/mypage/withdraw" className="cursor-pointer">
+      <Link 
+        href="/mypage/withdraw" 
+        className="cursor-pointer"
+        onClick={() => {
+          trackGAEvent(GA_EVENT.ClickWithdraw, {
+            screen: "PF"
+          });
+        }}
+      >
         <SettingsLinkItem
           label={
             <div className={`${labelFontClass} text-gray-500 pl-1`}>

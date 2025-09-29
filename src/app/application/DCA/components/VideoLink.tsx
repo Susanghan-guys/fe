@@ -1,14 +1,16 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import TextInput from "@/components/common/TextInput";
 import { useSubmitStore } from "@/store/useSubmitStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const VideoLink = () => {
   const youtubeUrl = useSubmitStore((s) => s.youtubeUrl);
   const setField = useSubmitStore((s) => s.setField);
   const category = useSubmitStore((s) => s.category);
   const isMobile = useIsMobile();
+  const videoLinkEventSent = useRef(false);
 
   return (
     <div
@@ -27,6 +29,17 @@ const VideoLink = () => {
         placeholder="URL을 입력하세요."
         value={youtubeUrl}
         onChange={(e) => setField("youtubeUrl", e.target.value)}
+        onFocus={() => {
+          videoLinkEventSent.current = false;
+        }}
+        onBlur={() => {
+          if (youtubeUrl.trim() && !videoLinkEventSent.current) {
+            trackGAEvent(GA_EVENT.InputVideolinkDca, {
+              screen: "AP"
+            });
+            videoLinkEventSent.current = true;
+          }
+        }}
         className="w-full h-[48px]"
       />
     </div>

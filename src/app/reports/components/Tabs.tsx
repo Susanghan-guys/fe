@@ -7,6 +7,7 @@ import Loading from "@/components/common/Loading";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import ReportTableHeader from "./ReportPageHeader";
 import { useReportList } from "@/hooks/queries";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const Tabs = () => {
   const isMobile = useIsMobile();
@@ -50,7 +51,14 @@ const Tabs = () => {
         {tabs.map((tab) => (
           <div
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => {
+              // GA 이벤트: 리포트 목록 탭 변경
+              trackGAEvent(GA_EVENT.ChangeTab, {
+                click_tab: tab,
+                screen: "RP",
+              });
+              setActiveTab(tab);
+            }}
             className={`py-3 cursor-pointer ${
               activeTab === tab
                 ? `text-blue-main ${

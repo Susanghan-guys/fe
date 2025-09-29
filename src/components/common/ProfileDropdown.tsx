@@ -1,5 +1,6 @@
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 interface ProfileDropdownProps {
   dropdownRef: React.RefObject<HTMLDivElement | null>;
@@ -11,8 +12,13 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
   onLogout,
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleProfileClick = () => {
+    trackGAEvent(GA_EVENT.ViewProfileInfo, {
+      prev_page_url: pathname,
+      screen: "PF"
+    });
     router.push("/mypage");
   };
 

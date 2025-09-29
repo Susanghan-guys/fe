@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useUserMe } from "@/hooks/queries/useUser";
 import UserProfilePresentor from "./UserProfilePresentor";
 import UserProfileSkeleton from "@/components/common/UserProfileSkeleton";
+import { GA_EVENT, trackGAEvent } from "@/libs/ga";
 
 interface UserProfileContainerProps {
   className?: string;
@@ -54,10 +55,12 @@ function UserProfileData({ className }: { className: string }) {
   }, [error]);
 
   const handleProfileClick = () => {
+    trackGAEvent(GA_EVENT.NameChange, {
+      screen: "PF",
+    });
     router.push("/mypage/edit");
   };
 
-  // 클라이언트에서 마운트되기 전까지는 스켈레톤 표시
   if (!mounted || isLoading) {
     return <UserProfileSkeleton className={className} />;
   }

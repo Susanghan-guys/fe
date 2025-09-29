@@ -1,10 +1,11 @@
 "use client";
 import TextInput from "@/components/common/TextInput";
 import { useSubmitStore } from "@/store/useSubmitStore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { DeleteIcon, HoverDelete, PlusIcon } from "../../../../../public";
 import { useUserMe } from "@/hooks/queries/useUser";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 interface TeamMember {
   name: string;
@@ -35,6 +36,13 @@ const TeamInformation = ({ mode }: TeamInformationProps) => {
   const [emailErrors, setEmailErrors] = useState<{ [key: string]: boolean }>(
     {}
   );
+
+  // GA 이벤트 중복 방지를 위한 ref들
+  const applicantNameEventSent = useRef(false);
+  const applicantEmailEventSent = useRef(false);
+  const addTeammateClickCount = useRef(0);
+  const teammateNameEventsSent = useRef<{ [key: string]: boolean }>({});
+  const teammateEmailEventsSent = useRef<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     if (userData?.result) {
@@ -81,6 +89,20 @@ const TeamInformation = ({ mode }: TeamInformationProps) => {
     if (teamMembers.length < 3) {
       setTeamMembers((prev) => [...prev, { name: "", email: "" }]);
       setIsWriting(true);
+
+      // GA 이벤트: 팀원 추가 버튼 클릭
+      addTeammateClickCount.current += 1;
+      if (mode === "dca") {
+        trackGAEvent(GA_EVENT.AddTeammateDca, {
+          click_count: addTeammateClickCount.current,
+          screen: "AP",
+        });
+      } else {
+        trackGAEvent(GA_EVENT.AddTeammateYcc, {
+          click_count: addTeammateClickCount.current,
+          screen: "AP",
+        });
+      }
     }
   };
 
@@ -140,6 +162,23 @@ const TeamInformation = ({ mode }: TeamInformationProps) => {
               setApplicantName(e.target.value);
               setIsWriting(true);
             }}
+            onFocus={() => {
+              applicantNameEventSent.current = false;
+            }}
+            onBlur={() => {
+              if (applicantName.trim() && !applicantNameEventSent.current) {
+                if (mode === "dca") {
+                  trackGAEvent(GA_EVENT.EditApplicantnameDca, {
+                    screen: "AP",
+                  });
+                } else {
+                  trackGAEvent(GA_EVENT.EditApplicantnameYcc, {
+                    screen: "AP",
+                  });
+                }
+                applicantNameEventSent.current = true;
+              }
+            }}
             className="w-full"
           />
         </div>
@@ -150,6 +189,23 @@ const TeamInformation = ({ mode }: TeamInformationProps) => {
             placeholder="이메일을 입력하세요"
             value={applicantEmail}
             onChange={(e) => handleApplicantEmailChange(e.target.value)}
+            onFocus={() => {
+              applicantEmailEventSent.current = false;
+            }}
+            onBlur={() => {
+              if (applicantEmail.trim() && !applicantEmailEventSent.current) {
+                if (mode === "dca") {
+                  trackGAEvent(GA_EVENT.EditApplicantemailDca, {
+                    screen: "AP",
+                  });
+                } else {
+                  trackGAEvent(GA_EVENT.EditApplicantemailYcc, {
+                    screen: "AP",
+                  });
+                }
+                applicantEmailEventSent.current = true;
+              }
+            }}
             className="w-full"
             error={emailErrors.applicant}
           />
@@ -198,6 +254,26 @@ const TeamInformation = ({ mode }: TeamInformationProps) => {
                 onChange={(e) =>
                   handleMemberChange(index, "name", e.target.value)
                 }
+                onFocus={() => {
+                  teammateNameEventsSent.current[`member-${index}`] = false;
+                }}
+                onBlur={() => {
+                  if (
+                    member.name.trim() &&
+                    !teammateNameEventsSent.current[`member-${index}`]
+                  ) {
+                    if (mode === "dca") {
+                      trackGAEvent(GA_EVENT.InputTeammatenameDca, {
+                        screen: "AP",
+                      });
+                    } else {
+                      trackGAEvent(GA_EVENT.InputTeammatenameYcc, {
+                        screen: "AP",
+                      });
+                    }
+                    teammateNameEventsSent.current[`member-${index}`] = true;
+                  }
+                }}
                 className="w-full"
               />
             </div>
@@ -221,6 +297,26 @@ const TeamInformation = ({ mode }: TeamInformationProps) => {
                   onChange={(e) =>
                     handleMemberChange(index, "email", e.target.value)
                   }
+                  onFocus={() => {
+                    teammateEmailEventsSent.current[`member-${index}`] = false;
+                  }}
+                  onBlur={() => {
+                    if (
+                      member.email.trim() &&
+                      !teammateEmailEventsSent.current[`member-${index}`]
+                    ) {
+                      if (mode === "dca") {
+                        trackGAEvent(GA_EVENT.InputTeammateemailDca, {
+                          screen: "AP",
+                        });
+                      } else {
+                        trackGAEvent(GA_EVENT.InputTeammateemailYcc, {
+                          screen: "AP",
+                        });
+                      }
+                      teammateEmailEventsSent.current[`member-${index}`] = true;
+                    }
+                  }}
                   className="w-full"
                   error={emailErrors[`member-${index}`]}
                 />
