@@ -8,18 +8,23 @@ import ButtonBase from "./ButtonBase";
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
+  redirectTo?: string; // 로그인 후 리다이렉트할 URL
 }
 
-export function LoginModal({ isOpen, onClose }: LoginModalProps) {
+export function LoginModal({ isOpen, onClose, redirectTo }: LoginModalProps) {
   const router = useRouter();
 
   const handleLogin = () => {
-    router.push("/login");
+    // 리다이렉트 URL이 있으면 쿼리 파라미터로 전달
+    const loginUrl = redirectTo ? `/login?redirect=${encodeURIComponent(redirectTo)}` : "/login";
+    router.push(loginUrl);
   };
 
   const handleClose = () => {
     onClose();
-    router.push("/");
+    // redirectTo가 있으면 해당 URL로, 없으면 홈으로
+    const targetUrl = redirectTo || "/";
+    router.push(targetUrl);
   };
 
   if (!isOpen) return null;
