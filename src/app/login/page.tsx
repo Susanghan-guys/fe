@@ -34,7 +34,9 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#FEE500] cursor-pointer"
             onClick={() => {
-              const redirectParam = redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : '';
+              const redirectParam = redirectTo
+                ? `?redirect=${encodeURIComponent(redirectTo)}`
+                : "";
               window.location.href = `${BACKEND_URL}/oauth2/authorization/kakao${redirectParam}`;
             }}
           >
@@ -58,7 +60,9 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#FFF] border border-[#E7E7E7] cursor-pointer"
             onClick={() => {
-              const redirectParam = redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : '';
+              const redirectParam = redirectTo
+                ? `?redirect=${encodeURIComponent(redirectTo)}`
+                : "";
               window.location.href = `${BACKEND_URL}/oauth2/authorization/google${redirectParam}`;
             }}
           >
@@ -82,7 +86,9 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#03C75A] cursor-pointer"
             onClick={() => {
-              const redirectParam = redirectTo ? `?redirect=${encodeURIComponent(redirectTo)}` : '';
+              const redirectParam = redirectTo
+                ? `?redirect=${encodeURIComponent(redirectTo)}`
+                : "";
               window.location.href = `${BACKEND_URL}/oauth2/authorization/naver${redirectParam}`;
             }}
           >
