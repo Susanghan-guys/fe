@@ -42,8 +42,7 @@ export function useOAuthCallback(options: UseOAuthCallbackOptions = {}) {
   
   const {
     defaultRedirectUrl,
-    removeCodeFromUrl = true,
-    enableLoadingState = false
+    removeCodeFromUrl = true
   } = options;
 
   const code = searchParams.get("code");
