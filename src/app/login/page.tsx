@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { Google, KaKao, Naver } from "../../../public";
 import ToolTip from "./_components/Tooltip";
 import Header from "@/components/common/Header";
@@ -10,7 +10,8 @@ import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 const BACKEND_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const REDIRECT_BASE_URL = process.env.NEXT_PUBLIC_RIDRECT_BASE_URL || "";
 
-const Page = () => {
+// useSearchParams를 사용하는 컴포넌트를 분리
+function LoginForm() {
   const [lastProvider, setLastProvider] = useState<string | null>(null);
   const [showTooltip, setShowTooltip] = useState(true);
   const searchParams = useSearchParams();
@@ -21,10 +22,12 @@ const Page = () => {
       setLastProvider(localStorage.getItem("socialLogin"));
     }
   }, []);
+  
   const onClose = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     setShowTooltip(false);
   };
+  
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
@@ -129,6 +132,32 @@ const Page = () => {
         </div>
       </div>
     </div>
+  );
+}
+
+// 로딩 컴포넌트
+function LoginLoading() {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Header />
+      <div className="flex items-center justify-center min-h-[calc(100vh-80px)] px-4">
+        <div className="bg-white w-full max-w-[434px] rounded-[20px] px-[47px] py-10 sm:px-[47px] sm:py-[52px] flex flex-col gap-[15px]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
+            <p className="text-gray-600">로딩 중...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 메인 페이지 컴포넌트
+const Page = () => {
+  return (
+    <Suspense fallback={<LoginLoading />}>
+      <LoginForm />
+    </Suspense>
   );
 };
 

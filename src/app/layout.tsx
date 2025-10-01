@@ -5,6 +5,7 @@ import { QueryProvider } from "@/components/providers/QueryProvider";
 import AnalyticsTools from "@/components/common/AnalyticsTools";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
   title: "수상한 녀석들",
   description: "공모전 출품작 분석 AI 서비스",
   icons: {
