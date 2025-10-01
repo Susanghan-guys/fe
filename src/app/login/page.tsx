@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const REDIRECT_BASE_URL = process.env.NEXT_PUBLIC_RIDRECT_BASE_URL || "";
 
 const Page = () => {
   const [lastProvider, setLastProvider] = useState<string | null>(null);
@@ -36,12 +37,16 @@ const Page = () => {
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#FEE500] cursor-pointer"
             onClick={() => {
               const redirectParam = redirectTo
-                ? `?redirect=${encodeURIComponent(redirectTo)}`
+                ? `?redirect=${encodeURIComponent(
+                    REDIRECT_BASE_URL
+                  )}${encodeURIComponent(redirectTo)}`
                 : "";
               trackGAEvent(GA_EVENT.LoginKakao, {
-                screen: "LO"
+                screen: "LO",
               });
-              window.location.href = `${BACKEND_URL}/oauth2/authorization/kakao${redirectParam}`;
+              const oauthUrl = `${BACKEND_URL}/oauth2/authorization/kakao${redirectParam}`;
+              console.log("Kakao OAuth URL:", oauthUrl);
+              window.location.href = oauthUrl;
             }}
           >
             {lastProvider === "KAKAO" && showTooltip && (
@@ -67,10 +72,12 @@ const Page = () => {
               const redirectParam = redirectTo
                 ? `?redirect=${encodeURIComponent(redirectTo)}`
                 : "";
-               trackGAEvent(GA_EVENT.LoginGoogle, {
-                screen: "LO"
+              trackGAEvent(GA_EVENT.LoginGoogle, {
+                screen: "LO",
               });
-              window.location.href = `${BACKEND_URL}/oauth2/authorization/google${redirectParam}`;
+              const oauthUrl = `${BACKEND_URL}/oauth2/authorization/google${redirectParam}`;
+              console.log("Google OAuth URL:", oauthUrl);
+              window.location.href = oauthUrl;
             }}
           >
             {lastProvider === "GOOGLE" && showTooltip && (
@@ -97,10 +104,11 @@ const Page = () => {
                 ? `?redirect=${encodeURIComponent(redirectTo)}`
                 : "";
               trackGAEvent(GA_EVENT.LoginNaver, {
-                screen: "LO"
+                screen: "LO",
               });
-              window.location.href = `${BACKEND_URL}/oauth2/authorization/naver${redirectParam}`;
-            
+              const oauthUrl = `${BACKEND_URL}/oauth2/authorization/naver${redirectParam}`;
+              console.log("Naver OAuth URL:", oauthUrl);
+              window.location.href = oauthUrl;
             }}
           >
             {lastProvider === "NAVER" && showTooltip && (

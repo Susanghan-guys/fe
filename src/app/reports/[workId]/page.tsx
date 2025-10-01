@@ -8,12 +8,31 @@ import MobileReport from "./mobile/MobileReport";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useParams, useRouter } from "next/navigation";
 import { AuthGuard } from "@/components/common/AuthGuard";
+import { useOAuthCallback } from "@/hooks/useOAuthCallback";
 
 function Page() {
   const isMobile = useIsMobile();
   const router = useRouter();
   const params = useParams() as { workId?: string };
   const workId = Number(params?.workId);
+  
+  // OAuth 콜백 처리 - AuthGuard보다 먼저 실행
+  const { isOAuthCallback, isProcessing } = useOAuthCallback({
+    removeCodeFromUrl: true
+  });
+
+  // OAuth 콜백 처리 중일 때는 로딩 표시
+  if (isOAuthCallback || isProcessing) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
+          <p className="text-gray-600">로그인 처리 중...</p>
+        </div>
+      </div>
+    );
+  }
+
   // 뒤로가기 시 /reports로 이동
   useEffect(() => {
     const handlePopState = () => {
