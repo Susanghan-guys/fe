@@ -1,6 +1,27 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const BASE_URL = process.env.NODE_ENV === 'development' ? '/api' : process.env.NEXT_PUBLIC_BASE_URL;
+// 환경별 API URL 설정
+const getBaseURL = () => {
+  // 로컬 개발 환경
+  if (process.env.NODE_ENV === 'development') {
+    return '/api'; // Next.js rewrites 사용
+  }
+  
+  // Vercel 개발 환경
+  if (process.env.VERCEL_ENV === 'development') {
+    return '/api'; // Next.js rewrites 사용
+  }
+  
+  // 커스텀 개발 환경 변수
+  if (process.env.NEXT_PUBLIC_ENV === 'development') {
+    return '/api'; // Next.js rewrites 사용
+  }
+  
+  // 프로덕션 환경
+  return process.env.NEXT_PUBLIC_BASE_URL;
+};
+
+const BASE_URL = getBaseURL();
 const CONTENT_TYPE_JSON = "application/json";
 
 interface CustomAxiosRequestConfig extends AxiosRequestConfig {
