@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { Google, KaKao, Naver } from "../../../public";
 import ToolTip from "./_components/Tooltip";
 import Header from "@/components/common/Header";
-import { useSearchParams } from "next/navigation";
 import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -12,8 +11,6 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const Page = () => {
   const [lastProvider, setLastProvider] = useState<string | null>(null);
   const [showTooltip, setShowTooltip] = useState(true);
-  const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirect");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -35,13 +32,10 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#FEE500] cursor-pointer"
             onClick={() => {
-              const redirectParam = redirectTo
-                ? `?redirect=${encodeURIComponent(redirectTo)}`
-                : "";
               trackGAEvent(GA_EVENT.LoginKakao, {
                 screen: "LO"
               });
-              window.location.href = `${BACKEND_URL}/oauth2/authorization/kakao${redirectParam}`;
+              window.location.href = `${BACKEND_URL}/oauth2/authorization/kakao`;
             }}
           >
             {lastProvider === "KAKAO" && showTooltip && (
@@ -64,13 +58,10 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#FFF] border border-[#E7E7E7] cursor-pointer"
             onClick={() => {
-              const redirectParam = redirectTo
-                ? `?redirect=${encodeURIComponent(redirectTo)}`
-                : "";
-               trackGAEvent(GA_EVENT.LoginGoogle, {
+              trackGAEvent(GA_EVENT.LoginGoogle, {
                 screen: "LO"
               });
-              window.location.href = `${BACKEND_URL}/oauth2/authorization/google${redirectParam}`;
+              window.location.href = `${BACKEND_URL}/oauth2/authorization/google`;
             }}
           >
             {lastProvider === "GOOGLE" && showTooltip && (
@@ -93,14 +84,10 @@ const Page = () => {
           <div
             className="relative group flex py-3 w-full items-center justify-between rounded-[10px] bg-[#03C75A] cursor-pointer"
             onClick={() => {
-              const redirectParam = redirectTo
-                ? `?redirect=${encodeURIComponent(redirectTo)}`
-                : "";
               trackGAEvent(GA_EVENT.LoginNaver, {
                 screen: "LO"
               });
-              window.location.href = `${BACKEND_URL}/oauth2/authorization/naver${redirectParam}`;
-            
+              window.location.href = `${BACKEND_URL}/oauth2/authorization/naver`;
             }}
           >
             {lastProvider === "NAVER" && showTooltip && (
