@@ -12,6 +12,7 @@ import YccScoreDetail from "../ScoreDetail/YccScoreDetail";
 import RadarChartComponent from "./RadarChartComponent.tsx";
 import { Arrow } from "../../../../../../../public";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 type ContestName = "DCA" | "YCC";
 
@@ -140,7 +141,15 @@ const WorkEvaluation = ({
             </span>
           }
           className="flex pt-3 pl-[22px] pr-4 cursor-pointer"
-          onClick={() => handleViewChange("criteria")}
+          onClick={() => {
+            // GA 이벤트: 작품 총평 - 평가 기준 클릭
+            trackGAEvent(GA_EVENT.ClickCriteria, {
+              report_title: workName,
+              contest_name: contestName,
+              screen: "RP"
+            });
+            handleViewChange("criteria");
+          }}
         />
         <ButtonBase
           label={
@@ -152,7 +161,15 @@ const WorkEvaluation = ({
             </span>
           }
           size="S"
-          onClick={() => handleViewChange("scoreDetail")}
+          onClick={() => {
+            // GA 이벤트: 작품 총평 - 점수 상세보기 클릭
+            trackGAEvent(GA_EVENT.ClickStandards, {
+              report_title: workName,
+              contest_name: contestName,
+              screen: "RP"
+            });
+            handleViewChange("scoreDetail");
+          }}
         />
       </div>
 

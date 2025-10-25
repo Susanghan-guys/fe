@@ -5,6 +5,7 @@ import CloseIcon from "../../../../../../public/icons/CloseIcon";
 import CopyIcon from "../../../../../../public/icons/CopyIcon";
 import CheckIcon from "../../../../../../public/icons/CheckIcon";
 import ButtonBase from "@/components/common/ButtonBase";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 interface ShareModalProps {
   isOpen: boolean;
@@ -26,6 +27,19 @@ const ShareModal: React.FC<ShareModalProps> = ({
       await navigator.clipboard.writeText(text);
       setCopiedField(field);
       setTimeout(() => setCopiedField(null), 2000);
+      
+      // GA 이벤트: 링크 또는 코드 복사
+      if (field === "url") {
+        trackGAEvent(GA_EVENT.CopyLink, {
+          report_url: text,
+          screen: "RP"
+        });
+      } else {
+        trackGAEvent(GA_EVENT.CopyReportCode, {
+          report_code: text,
+          screen: "RP"
+        });
+      }
     } catch (err) {
       console.error("복사 실패:", err);
     }
@@ -109,7 +123,19 @@ const ShareModal: React.FC<ShareModalProps> = ({
 
         {/* 완료 버튼 */}
         <div className="flex justify-end">
-          <ButtonBase size="S" label="완료" onClick={onClose} />
+          <ButtonBase 
+            size="S" 
+            label="완료" 
+            onClick={() => {
+              // GA 이벤트: 리포트 공유하기 완료
+              trackGAEvent(GA_EVENT.DoneShare, {
+                report_url: reportUrl,
+                report_code: reportCode,
+                screen: "RP"
+              });
+              onClose();
+            }} 
+          />
         </div>
       </div>
     </div>

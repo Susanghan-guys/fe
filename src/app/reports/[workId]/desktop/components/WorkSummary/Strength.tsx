@@ -3,6 +3,7 @@ import Loading from "@/components/common/Loading";
 import { usePersonalStrengths, usePersonalWeakness } from "@/hooks/queries";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useState } from "react";
+import { trackGAEvent, GA_EVENT } from "@/libs/ga";
 
 type StrengthItem = {
   code: string;
@@ -77,7 +78,14 @@ const Strength = ({ workId }: StrengthProps) => {
           return (
             <button
               key={t}
-              onClick={() => setTab(t)}
+              onClick={() => {
+                // GA 이벤트: 강점 및 보완점 조회
+                trackGAEvent(GA_EVENT.ViewStrongWeak, {
+                  tab_type: t,
+                  screen: "RP"
+                });
+                setTab(t);
+              }}
               className={`relative rounded-[30px]  items-center cursor-pointer ${
                 isMobile
                   ? "font-B03-M px-[18px] py-2 "

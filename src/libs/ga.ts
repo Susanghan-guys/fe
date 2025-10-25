@@ -62,6 +62,17 @@ export const GA_EVENT = {
   DeleteReport: "delete_report",
   ClickFeedback: "click_feedback",
   SelectRating: "select_rating",
+  // 피드백 관련 이벤트
+  InputFeedback: "input_feedback",
+  SubmitFeedback: "submit_feedback",
+  // 공유 관련 이벤트
+  CopyLink: "copy_link",
+  CopyReportCode: "copy_report_code",
+  DoneShare: "done_share",
+  // 작품 총평 관련 이벤트
+  ClickCriteria: "click_criteria",
+  ClickStandards: "click_standards",
+  ViewStrongWeak: "view_strongweak",
 } as const;
 
 export type GAEventName = (typeof GA_EVENT)[keyof typeof GA_EVENT] | string;

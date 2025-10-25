@@ -21,6 +21,13 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
   const [review, setReview] = useState<string>("");
 
   const handleSubmit = () => {
+    // GA 이벤트: 피드백 제출
+    trackGAEvent(GA_EVENT.SubmitFeedback, {
+      rating: rating,
+      feedback_text: review,
+      screen: "RP"
+    });
+    
     onSubmit?.(rating, review);
     // 제출 후 모달 닫기
     onClose();
@@ -79,7 +86,14 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
         <div className="mb-6">
           <textarea
             value={review}
-            onChange={(e) => setReview(e.target.value)}
+            onChange={(e) => {
+              setReview(e.target.value);
+              // GA 이벤트: 피드백 텍스트 입력
+              trackGAEvent(GA_EVENT.InputFeedback, {
+                feedback_text: e.target.value,
+                screen: "RP"
+              });
+            }}
             placeholder="후기를 남겨주세요."
             className="h-[180px] w-full resize-none rounded-[8px] border border-gray-200 p-6 font-B02-M placeholder:text-gray-300 focus:border-blue-main focus:outline-none"
             maxLength={500}

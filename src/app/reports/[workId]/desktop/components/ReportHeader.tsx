@@ -52,6 +52,13 @@ const ReportHeader: React.FC<ReportHeaderProps> = ({
   };
 
   const handleOpenShareModal = () => {
+    // GA 이벤트: 공유하기 선택
+    trackGAEvent(GA_EVENT.ClickShare, {
+      report_title: workName,
+      contest_name: contestName,
+      screen: "RP"
+    });
+    
     shareReportMutation.mutate(workId, {
       onSuccess: (res) => {
         const link =
