@@ -1,22 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/queries/useAuth";
 import { LoginModal } from "./LoginModal";
 
 interface AuthGuardProps {
   children: React.ReactNode;
   fallback?: React.ReactNode;
-  redirectTo?: string; // 로그인 후 리다이렉트할 URL
 }
 
-export function AuthGuard({ children, fallback, redirectTo }: AuthGuardProps) {
+export function AuthGuard({ children, fallback }: AuthGuardProps) {
   const { isLoggedIn } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -26,9 +23,7 @@ export function AuthGuard({ children, fallback, redirectTo }: AuthGuardProps) {
 
   const handleCloseModal = () => {
     setShowLoginModal(false);
-    // redirectTo가 있으면 해당 URL로, 없으면 홈으로
-    const targetUrl = redirectTo || "/";
-    router.push(targetUrl);
+    router.push("/");
   };
 
   // 로그인되지 않은 경우 fallback 또는 로딩 표시
@@ -43,7 +38,7 @@ export function AuthGuard({ children, fallback, redirectTo }: AuthGuardProps) {
             </div>
           </div>
         )}
-        <LoginModal isOpen={showLoginModal} onClose={handleCloseModal} redirectTo={redirectTo} />
+        <LoginModal isOpen={showLoginModal} onClose={handleCloseModal} />
       </>
     );
   }
