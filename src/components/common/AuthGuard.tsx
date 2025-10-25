@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useAuth } from "@/hooks/queries/useAuth";
 import { LoginModal } from "./LoginModal";
 
@@ -15,6 +15,8 @@ export function AuthGuard({ children, fallback, redirectTo }: AuthGuardProps) {
   const { isLoggedIn } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (!isLoggedIn) {
