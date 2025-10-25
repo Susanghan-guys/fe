@@ -21,15 +21,6 @@ function Page() {
     removeCodeFromUrl: true
   });
 
-  // 뒤로가기 시 /reports로 이동
-  useEffect(() => {
-    const handlePopState = () => {
-      router.push("/reports");
-    };
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, [router]);
-
   // OAuth 콜백 처리 중일 때는 로딩 표시
   if (isOAuthCallback || isProcessing) {
     return (
@@ -41,6 +32,15 @@ function Page() {
       </div>
     );
   }
+
+  // 뒤로가기 시 /reports로 이동
+  useEffect(() => {
+    const handlePopState = () => {
+      router.push("/reports");
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [router]);
 
   return (
     <AuthGuard redirectTo={`/reports/${workId}`}>
